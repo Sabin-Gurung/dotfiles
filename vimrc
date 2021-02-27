@@ -7,7 +7,9 @@ set autoindent copyindent smartindent
 set nu relativenumber
 set nowrap
 set laststatus=2
-set noswapfile nobackup
+set noswapfile nobackup nowritebackup
+set pumheight=10
+" set completeopt=menuone,longest
 set scrolloff=7
 set noerrorbells
 set shiftwidth=4 softtabstop=4 expandtab smartindent
@@ -42,6 +44,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'morhetz/gruvbox'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 filetype plugin indent on
 
@@ -52,10 +55,13 @@ let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified'],
+      \             ['cocstatus', 'currentfunction'] ]
       \ },
       \ 'component_function': {
-      \   'gitbranch': 'FugitiveHead'
+      \   'gitbranch': 'FugitiveHead',
+      \   'cocstatus': 'coc#status',
+      \   'currentfunction': 'CocCurrentFunction'
       \ },
       \ }
 
@@ -72,10 +78,14 @@ function! ToggleNERDTree()
     silent NERDTreeMirror
 endfunction
 
-no <leader><space> :Commands<CR>
+nnoremap <leader><space> :Commands<CR>
 nnoremap <C-p> :call GoFilesFZF()<CR>
 nnoremap ¡ :call ToggleNERDTree()<CR>
 nnoremap <leader>bb :Buffers<CR>
+nmap <leader>gd <Plug>(coc-definition)
+nmap <leader>gu <Plug>(coc-references)
+nmap <leader>rr <Plug>(coc-rename)
+
 
 no <down> <Nop>
 no <right> <Nop>
