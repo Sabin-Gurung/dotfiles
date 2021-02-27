@@ -1,5 +1,6 @@
 set hlsearch incsearch
 
+set scrolloff=7
 set showmode
 set commentary
 set surround
@@ -8,7 +9,14 @@ set NERDTree
 
 let mapleader = " "
 imap jk <Esc>
-nnoremap <C-]> <C-^>
+nnoremap <c-]> :e #<cr>
+nnoremap <leader>wv <c-w>v
+nnoremap <leader>ws <c-w>s
+nnoremap <leader>wo <c-w>o
+nnoremap <c-h> <c-w>h
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
 
 nnoremap <leader><leader> :action SearchEverywhere<cr>
 
