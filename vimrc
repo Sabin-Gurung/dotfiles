@@ -13,11 +13,11 @@ set noerrorbells
 set shiftwidth=4 softtabstop=4 expandtab smartindent
 syntax on
 
-let mapleader = " "
-imap jk <Esc>
 command! VimConfig execute "e ~/.vimrc"
 command! VimSource execute "source ~/.vimrc"
 
+let mapleader = " "
+imap jk <Esc>
 nnoremap <C-]> :e #<CR>
 nnoremap <leader>wv :wincmd v<CR>
 nnoremap <leader>ws :wincmd s<CR>
@@ -59,11 +59,24 @@ let g:lightline = {
       \ },
       \ }
 
+function! GoFilesFZF()
+    if '' == fugitive#statusline()
+        GFiles!
+    else
+        Files!
+    endif
+endfunction
+
+function! ToggleNERDTree()
+    NERDTreeToggle
+    silent NERDTreeMirror
+endfunction
+
 no <leader><space> :Commands<CR>
-nnoremap <C-p> :Files!<CR>
+nnoremap <C-p> :call GoFilesFZF()<CR>
+nnoremap ¡ :call ToggleNERDTree()<CR>
 nnoremap <leader>bb :Buffers<CR>
 
-" Unmap the arrow keys
 no <down> <Nop>
 no <right> <Nop>
 no <left> <Nop>
@@ -72,5 +85,7 @@ ino <down> <Nop>
 ino <right> <Nop>
 ino <left> <Nop>
 ino <up> <Nop>
+vno <down> <Nop>
+vno <right> <Nop>
 vno <left> <Nop>
 vno <up> <Nop>
