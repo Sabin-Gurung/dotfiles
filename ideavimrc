@@ -1,0 +1,27 @@
+set hlsearch incsearch
+
+set showmode
+set commentary
+set surround
+set highlightedyank
+set NERDTree
+
+let mapleader = " "
+imap jk <Esc>
+nnoremap <C-]> <C-^>
+
+nnoremap <leader><leader> :action SearchEverywhere<cr>
+
+" Unmap the arrow keys
+no <down> <Nop>
+no <right> <Nop>
+no <left> <Nop>
+no <up> <Nop>
+ino <down> <Nop>
+ino <right> <Nop>
+ino <left> <Nop>
+ino <up> <Nop>
+vno <down> <Nop>
+vno <right> <Nop>
+vno <left> <Nop>
+vno <up> <Nop>
