@@ -7,10 +7,11 @@ set autoindent copyindent smartindent
 set nu relativenumber
 set nowrap
 set laststatus=2
-set noswapfile backup
+set noswapfile nobackup
 set scrolloff=7
 set noerrorbells
 set shiftwidth=4 softtabstop=4 expandtab smartindent
+syntax on
 
 let mapleader = " "
 imap jk <Esc>
