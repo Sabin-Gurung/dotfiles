@@ -1,8 +1,8 @@
 set guioptions=
+set clipboard=unnamed
 set noshowmode
 set listchars=eol:¬,tab:>-,trail:.,extends:>,precedes:<
 set shortmess+=c
-set nolist
 set hidden
 set hlsearch incsearch
 set autoindent copyindent smartindent
@@ -12,7 +12,7 @@ set nu
 set nowrap
 set laststatus=2
 set noswapfile nobackup nowritebackup
-set pumheight=10
+set pumheight=8
 set scrolloff=7
 set noerrorbells
 set shiftwidth=4 softtabstop=4 expandtab smartindent
@@ -22,6 +22,7 @@ command! VimConfig execute "e ~/.vimrc"
 command! VimSource execute "source ~/.vimrc"
 
 let mapleader = " "
+let maplocalleader = ","
 imap jk <Esc>
 nnoremap Y y$
 nnoremap <silent> <C-]> :e #<CR>
@@ -47,6 +48,11 @@ Plug 'tpope/vim-surround'
 Plug 'itchyny/lightline.vim'
 Plug 'morhetz/gruvbox'
 Plug 'mbbill/undotree'
+if has("nvim")
+    Plug 'Olical/conjure', {'tag': 'v4.15.0'}
+    Plug 'guns/vim-sexp'
+    Plug 'tpope/vim-sexp-mappings-for-regular-people'
+endif
 call plug#end()
 filetype plugin indent on
 
