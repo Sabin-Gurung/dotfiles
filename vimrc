@@ -46,6 +46,7 @@ Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-surround'
 Plug 'itchyny/lightline.vim'
 Plug 'morhetz/gruvbox'
+Plug 'mbbill/undotree'
 call plug#end()
 filetype plugin indent on
 
