@@ -23,6 +23,7 @@ command! VimSource execute "source ~/.vimrc"
 
 let mapleader = " "
 imap jk <Esc>
+nnoremap Y y$
 nnoremap <silent> <C-]> :e #<CR>
 nnoremap <leader>wv :wincmd v<CR>
 nnoremap <leader>ws :wincmd s<CR>
@@ -69,7 +70,7 @@ endfunction
 
 nnoremap <leader><space> :Commands<CR>
 nnoremap <C-p> :Files!<CR>
-nnoremap ¡ :call ToggleNERDTree()<CR>
+nnoremap <leader>of :call ToggleNERDTree()<CR>
 nnoremap <leader>bb :Buffers<CR>
 
 no <down> <Nop>
