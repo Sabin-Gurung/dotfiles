@@ -2,12 +2,13 @@ set guioptions=
 set noshowmode
 set listchars=eol:¬,tab:>-,trail:.,extends:>,precedes:<
 set shortmess+=c
-set signcolumn=yes
 set nolist
 set hidden
 set hlsearch incsearch
 set autoindent copyindent smartindent
-set nu relativenumber
+set nu 
+" set relativenumber
+" set signcolumn=yes
 set nowrap
 set laststatus=2
 set noswapfile nobackup nowritebackup
@@ -22,7 +23,7 @@ command! VimSource execute "source ~/.vimrc"
 
 let mapleader = " "
 imap jk <Esc>
-nnoremap <C-]> :e #<CR>
+nnoremap <silent> <C-]> :e #<CR>
 nnoremap <leader>wv :wincmd v<CR>
 nnoremap <leader>ws :wincmd s<CR>
 nnoremap <leader>wo :wincmd o<CR>
@@ -39,11 +40,9 @@ Plug 'scrooloose/nerdtree'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
-
 Plug 'Townk/vim-autoclose'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-surround'
-
 Plug 'itchyny/lightline.vim'
 Plug 'morhetz/gruvbox'
 call plug#end()
