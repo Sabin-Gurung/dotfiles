@@ -1,3 +1,4 @@
+" ------------------------ non plug in settings ---------------------------
 set guioptions=
 set clipboard=unnamed
 set noshowmode
@@ -33,9 +34,22 @@ nnoremap <C-h> :wincmd h<CR>
 nnoremap <C-j> :wincmd j<CR>
 nnoremap <C-k> :wincmd k<CR>
 nnoremap <C-l> :wincmd l<CR>
+no <down> <Nop>
+no <right> <Nop>
+no <left> <Nop>
+no <up> <Nop>
+ino <down> <Nop>
+ino <right> <Nop>
+ino <left> <Nop>
+ino <up> <Nop>
+vno <down> <Nop>
+vno <right> <Nop>
+vno <left> <Nop>
+vno <up> <Nop>
 
 command! IndentJson %!python -m json.tool
 
+" ------------------------ plug in settings ---------------------------
 call plug#begin('~/.vim/plugged')
 Plug 'mhinz/vim-startify'
 Plug 'scrooloose/nerdtree'
@@ -81,16 +95,4 @@ nnoremap <leader><space> :Commands<CR>
 nnoremap <C-p> :Files!<CR>
 nnoremap <leader>of :call ToggleNERDTree()<CR>
 nnoremap <leader>bb :Buffers<CR>
-
-no <down> <Nop>
-no <right> <Nop>
-no <left> <Nop>
-no <up> <Nop>
-ino <down> <Nop>
-ino <right> <Nop>
-ino <left> <Nop>
-ino <up> <Nop>
-vno <down> <Nop>
-vno <right> <Nop>
-vno <left> <Nop>
-vno <up> <Nop>
+nnoremap <leader>gs :Git<CR>
