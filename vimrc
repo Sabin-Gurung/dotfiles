@@ -59,6 +59,8 @@ filetype plugin indent on
 colorscheme gruvbox
 set background=dark
 
+let g:undotree_SetFocusWhenToggle=1
+
 let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'active': {
