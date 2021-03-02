@@ -48,6 +48,7 @@ vno <left> <Nop>
 vno <up> <Nop>
 
 command! IndentJson %!python -m json.tool
+command! Todo belowright split ~/misc/todo.todo <bar> :resize 10 <cr>
 
 " ------------------------ plug in settings ---------------------------
 call plug#begin('~/.vim/plugged')
@@ -73,6 +74,7 @@ filetype plugin indent on
 colorscheme gruvbox
 set background=dark
 
+let NERDTreeQuitOnOpen = 1
 let g:undotree_SetFocusWhenToggle=1
 
 let g:lightline = {

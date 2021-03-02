@@ -22,7 +22,7 @@ nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
 
 nnoremap <leader><leader> :action SearchEverywhere<cr>
-" refactor
+" ================= refactor =================
 nnoremap <leader>rr :action RenameElement<cr>
 nnoremap <leader>rn :action Inline<cr>
 nnoremap <leader>rR :action RefactoringMenu<cr>
@@ -32,23 +32,22 @@ nnoremap <leader>rm :action ExtractFunction<cr>
 nnoremap <leader>rv :action IntroduceVariable<cr>
 nnoremap <leader>ro :action OptimizeImports<cr>
 nnoremap <leader>rF :action ReformatCode<cr>
-" generate
+" ================= generate =================
 nnoremap <leader>rg :action Generate<cr>
-" goto
+" ================= goto =================
 nnoremap <leader>gr :action FindUsages<cr>
 nnoremap <leader>gt :action GotoTest<cr>
-" git
+" ================= git =================
 nnoremap <leader>ga :action Annotate<cr>
-nnoremap <leader>gs :action ActivateVersionControlToolWindow<cr>
+nnoremap <leader>gs :action Vcs.Show.Local.Changes<cr>
 nnoremap <leader>gb :action Git.Branches<cr>
 nnoremap <leader>gh :action Vcs.ShowTabbedFileHistory<cr>
-nnoremap <leader>gu :action Vcs.UpdateProject<cr>
-
-" test run
+nnoremap <leader>gf :action Vcs.UpdateProject<cr>
+nnoremap <leader>gu :action ChangesView.Revert<cr>
+" ================= Test/run =================
 nnoremap <leader>tr :action RunClass<cr>
 nnoremap <leader>td :action DebugClass<cr>
-
-" windows
+" ================= window/terminal =================
 nnoremap <leader>wm :action HideAllWindows<cr>
 nnoremap <leader>ot :action ActivateTerminalToolWindow<cr>
 nnoremap <leader>of :action ActivateProjectToolWindow<cr>
