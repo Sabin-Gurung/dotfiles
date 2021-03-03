@@ -14,14 +14,22 @@ imap jk <Esc>
 nnoremap <c-]> :e #<cr>
 nnoremap Y y$
 nnoremap <leader>wv <c-w>v
+nnoremap <leader>ww <c-w>w
 nnoremap <leader>ws <c-w>s
 nnoremap <leader>wo <c-w>o
 nnoremap <c-h> <c-w>h
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+vnoremap ? y/\V<C-R>=escape(@",'/\')<CR><CR>
 
-nnoremap <leader><leader> :action SearchEverywhere<cr>
+nnoremap <leader><leader> :action GotoAction<cr>
+" ================= projects =================
+nnoremap <leader>pp :action ManageRecentProjects<cr>
+" ================= buffers =================
+nnoremap <leader>bD :action CloseAllEditorsButActive<cr>
 " ================= refactor =================
 nnoremap <leader>rr :action RenameElement<cr>
 nnoremap <leader>rn :action Inline<cr>
@@ -37,6 +45,7 @@ nnoremap <leader>rg :action Generate<cr>
 " ================= goto =================
 nnoremap <leader>gr :action FindUsages<cr>
 nnoremap <leader>gt :action GotoTest<cr>
+nnoremap <leader>gi :action GotoImplementation<cr>
 " ================= git =================
 nnoremap <leader>ga :action Annotate<cr>
 nnoremap <leader>gs :action Vcs.Show.Local.Changes<cr>
@@ -52,20 +61,7 @@ nnoremap <leader>wm :action HideAllWindows<cr>
 nnoremap <leader>ot :action ActivateTerminalToolWindow<cr>
 nnoremap <leader>of :action ActivateProjectToolWindow<cr>
 
-" Unmap the arrow keys
-no <down> <Nop>
-no <right> <Nop>
-no <left> <Nop>
-no <up> <Nop>
-ino <down> <Nop>
-ino <right> <Nop>
-ino <left> <Nop>
-ino <up> <Nop>
-vno <down> <Nop>
-vno <right> <Nop>
-vno <left> <Nop>
-vno <up> <Nop>
-
+" ================= cursive/paredit =================
 nnoremap >) :action :cursive.actions.paredit/slurp-forwards<cr>
 nnoremap <) :action :cursive.actions.paredit/barf-forwards<cr>
 nnoremap >( :action :cursive.actions.paredit/slurp-backwards<cr>

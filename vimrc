@@ -19,8 +19,8 @@ set noerrorbells
 set shiftwidth=4 softtabstop=4 expandtab smartindent
 syntax on
 
-command! VimConfig execute "e ~/.vimrc"
 command! VimSource execute "source ~/.vimrc"
+command! VimConfig execute "e ~/.vimrc"
 
 let mapleader = " "
 let maplocalleader = ","
@@ -28,24 +28,16 @@ imap jk <Esc>
 nnoremap Y y$
 nnoremap <silent> <C-]> :e #<CR>
 nnoremap <leader>wv :wincmd v<CR>
+nnoremap <leader>ww :wincmd w<CR>
 nnoremap <leader>ws :wincmd s<CR>
 nnoremap <leader>wo :wincmd o<CR>
 nnoremap <C-h> :wincmd h<CR>
 nnoremap <C-j> :wincmd j<CR>
 nnoremap <C-k> :wincmd k<CR>
 nnoremap <C-l> :wincmd l<CR>
-no <down> <Nop>
-no <right> <Nop>
-no <left> <Nop>
-no <up> <Nop>
-ino <down> <Nop>
-ino <right> <Nop>
-ino <left> <Nop>
-ino <up> <Nop>
-vno <down> <Nop>
-vno <right> <Nop>
-vno <left> <Nop>
-vno <up> <Nop>
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+vnoremap ? y/\V<C-R>=escape(@",'/\')<CR><CR>
 
 command! IndentJson %!python -m json.tool
 command! Todo belowright split ~/misc/todo.todo <bar> :resize 10 <cr>
@@ -64,7 +56,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'morhetz/gruvbox'
 Plug 'mbbill/undotree'
 if has("nvim")
-    Plug 'Olical/conjure', {'tag': 'v4.15.0'}
+    Plug 'Olical/conjure', {'tag': 'v4.15.0', 'for':'clojure'}
     Plug 'guns/vim-sexp'
     Plug 'tpope/vim-sexp-mappings-for-regular-people'
 endif
