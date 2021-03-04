@@ -8,6 +8,7 @@ set surround
 set highlightedyank
 set NERDTree
 set textobj-entire
+set exchange
 
 let mapleader = " "
 imap jk <Esc>
@@ -21,9 +22,6 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
-vnoremap ? y/\V<C-R>=escape(@",'/\')<CR><CR>
 
 nnoremap <leader><leader> :action GotoAction<cr>
 " ================= projects =================
