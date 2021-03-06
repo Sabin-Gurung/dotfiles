@@ -28,6 +28,7 @@ nnoremap <leader><leader> :action GotoAction<cr>
 nnoremap <leader>pp :action ManageRecentProjects<cr>
 " ================= buffers =================
 nnoremap <leader>bD :action CloseAllEditorsButActive<cr>
+nnoremap <leader>bb :action Switcher<cr>
 " ================= refactor =================
 nnoremap <leader>rr :action RenameElement<cr>
 nnoremap <leader>rn :action Inline<cr>

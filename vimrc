@@ -35,8 +35,6 @@ nnoremap <C-h> :wincmd h<CR>
 nnoremap <C-j> :wincmd j<CR>
 nnoremap <C-k> :wincmd k<CR>
 nnoremap <C-l> :wincmd l<CR>
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
 vnoremap * y/\V<C-R>=escape(@",'/\')<CR><CR>
 
 command! IndentJson %!python -m json.tool
