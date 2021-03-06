@@ -37,7 +37,7 @@ nnoremap <C-k> :wincmd k<CR>
 nnoremap <C-l> :wincmd l<CR>
 vnoremap * y/\V<C-R>=escape(@",'/\')<CR><CR>
 
-command! IndentJson %!python -m json.tool
+command! -range=% IndentJson :<line1>,<line2>!python -m json.tool
 command! Todo belowright split ~/misc/todo.todo <bar> :resize 10 <cr>
 
 " ------------------------ plug in settings ---------------------------
