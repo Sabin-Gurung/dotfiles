@@ -14,7 +14,7 @@ set nowrap
 set laststatus=2
 set noswapfile nobackup nowritebackup
 set pumheight=8
-set scrolloff=7
+set scrolloff=5
 set noerrorbells
 set shiftwidth=4 softtabstop=4 expandtab smartindent
 syntax on
@@ -36,9 +36,11 @@ nnoremap <C-j> :wincmd j<CR>
 nnoremap <C-k> :wincmd k<CR>
 nnoremap <C-l> :wincmd l<CR>
 vnoremap * y/\V<C-R>=escape(@",'/\')<CR><CR>
+nnoremap <leader>sr :%s//
+xnoremap <leader>sr :s//
 
 command! -range=% IndentJson :<line1>,<line2>!python -m json.tool
-command! Todo belowright split ~/misc/todo.todo <bar> :resize 10 <cr>
+command! Todo belowright split ~/tools/todo/todo.todo <bar> :resize 10 <cr>
 
 " ------------------------ plug in settings ---------------------------
 call plug#begin('~/.vim/plugged')
@@ -55,8 +57,6 @@ Plug 'morhetz/gruvbox'
 Plug 'mbbill/undotree'
 if has("nvim")
     Plug 'Olical/conjure', {'tag': 'v4.15.0', 'for':'clojure'}
-    Plug 'guns/vim-sexp'
-    Plug 'tpope/vim-sexp-mappings-for-regular-people'
 endif
 call plug#end()
 filetype plugin indent on
@@ -64,7 +64,6 @@ filetype plugin indent on
 colorscheme gruvbox
 set background=dark
 
-let NERDTreeQuitOnOpen = 1
 let g:undotree_SetFocusWhenToggle=1
 
 let g:lightline = {
@@ -82,6 +81,25 @@ function! ToggleNERDTree()
     NERDTreeToggle
     silent NERDTreeMirror
 endfunction
+
+function! FzfOmniFiles()
+    let is_git = system('git status')
+    if v:shell_error
+        :Files!
+    else
+        :GFiles!
+    endif
+endfunction
+
+function! s:startifyProjects()
+    let files = systemlist('fd .git$ -t d -H ~/workspace | sed -e "s/.git//g"')
+    return map(files, "{'line': v:val, 'path': v:val}")
+endfunction
+
+let g:startify_lists = [
+        \ { 'type': 'files',     'header': ['   MRU']            },
+        \ { 'type': function('s:startifyProjects'),     'header': ['   Projects']            }
+        \ ]
 
 nnoremap <leader><space> :Commands<CR>
 nnoremap <C-p> :Files!<CR>

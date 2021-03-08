@@ -35,7 +35,7 @@ nnoremap <leader>rn :action Inline<cr>
 nnoremap <leader>rR :action RefactoringMenu<cr>
 nnoremap <leader>rf :action IntroduceField<cr>
 nnoremap <leader>rc :action IntroduceConstant<cr>
-nnoremap <leader>rm :action ExtractFunction<cr>
+nnoremap <leader>rm :action ExtractMethod<cr>
 nnoremap <leader>rv :action IntroduceVariable<cr>
 nnoremap <leader>ro :action OptimizeImports<cr>
 nnoremap <leader>rF :action ReformatCode<cr>
