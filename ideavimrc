@@ -1,7 +1,6 @@
 set hlsearch incsearch
 set clipboard=unnamed
-
-set scrolloff=7
+set scrolloff=4
 set showmode
 set commentary
 set surround
@@ -22,13 +21,19 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
+nnoremap <leader>sr :%s//
+xnoremap <leader>sr :s//
+nnoremap ' `
 
 nnoremap <leader><leader> :action GotoAction<cr>
-" ================= projects =================
+" ================= general =================
 nnoremap <leader>pp :action ManageRecentProjects<cr>
-" ================= buffers =================
 nnoremap <leader>bD :action CloseAllEditorsButActive<cr>
 nnoremap <leader>bb :action Switcher<cr>
+nnoremap <leader>wm :action HideAllWindows<cr>
+nnoremap <leader>' :action ActivateTerminalToolWindow<cr>
+nnoremap <leader>ft :action ActivateProjectToolWindow<cr>
+nnoremap <leader>fl :action SelectInProjectView<cr>
 " ================= refactor =================
 nnoremap <leader>rr :action RenameElement<cr>
 nnoremap <leader>rn :action Inline<cr>
@@ -55,10 +60,6 @@ nnoremap <leader>gu :action ChangesView.Revert<cr>
 " ================= Test/run =================
 nnoremap <leader>tr :action RunClass<cr>
 nnoremap <leader>td :action DebugClass<cr>
-" ================= window/terminal =================
-nnoremap <leader>wm :action HideAllWindows<cr>
-nnoremap <leader>ot :action ActivateTerminalToolWindow<cr>
-nnoremap <leader>of :action ActivateProjectToolWindow<cr>
 
 " ================= cursive/paredit =================
 nnoremap >) :action :cursive.actions.paredit/slurp-forwards<cr>

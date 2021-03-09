@@ -8,8 +8,6 @@ set hidden
 set hlsearch incsearch
 set autoindent copyindent smartindent
 set nu 
-" set relativenumber
-" set signcolumn=yes
 set nowrap
 set laststatus=2
 set noswapfile nobackup nowritebackup
@@ -82,27 +80,20 @@ function! ToggleNERDTree()
     silent NERDTreeMirror
 endfunction
 
-function! FzfOmniFiles()
-    let is_git = system('git status')
-    if v:shell_error
-        :Files!
-    else
-        :GFiles!
-    endif
-endfunction
+" function! s:startifyProjects()
+"     let files = systemlist('fd .git$ -t d -H ~/workspace | sed -e "s/.git//g"')
+"     return map(files, "{'line': v:val, 'path': v:val}")
+" endfunction
 
-function! s:startifyProjects()
-    let files = systemlist('fd .git$ -t d -H ~/workspace | sed -e "s/.git//g"')
-    return map(files, "{'line': v:val, 'path': v:val}")
-endfunction
-
-let g:startify_lists = [
-        \ { 'type': 'files',     'header': ['   MRU']            },
-        \ { 'type': function('s:startifyProjects'),     'header': ['   Projects']            }
-        \ ]
+" let g:startify_lists = [
+"         \ { 'type': 'files',     'header': ['   MRU']            },
+"         \ { 'type': function('s:startifyProjects'),     'header': ['   Projects']            }
+"         \ ]
 
 nnoremap <leader><space> :Commands<CR>
 nnoremap <C-p> :Files!<CR>
-nnoremap <leader>of :call ToggleNERDTree()<CR>
+nnoremap <leader>ft :call ToggleNERDTree()<CR>
+nnoremap <leader>fl :NERDTreeFind<CR>
 nnoremap <leader>bb :Buffers<CR>
+nnoremap <leader>bD :bufdo bd<CR>
 nnoremap <leader>gs :Git<CR>
