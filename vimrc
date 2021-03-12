@@ -80,15 +80,7 @@ function! ToggleNERDTree()
     silent NERDTreeMirror
 endfunction
 
-" function! s:startifyProjects()
-"     let files = systemlist('fd .git$ -t d -H ~/workspace | sed -e "s/.git//g"')
-"     return map(files, "{'line': v:val, 'path': v:val}")
-" endfunction
-
-" let g:startify_lists = [
-"         \ { 'type': 'files',     'header': ['   MRU']            },
-"         \ { 'type': function('s:startifyProjects'),     'header': ['   Projects']            }
-"         \ ]
+let g:startify_files_number = 7
 
 nnoremap <leader><space> :Commands<CR>
 nnoremap <C-p> :Files!<CR>
@@ -97,3 +89,12 @@ nnoremap <leader>fl :NERDTreeFind<CR>
 nnoremap <leader>bb :Buffers<CR>
 nnoremap <leader>bD :bufdo bd<CR>
 nnoremap <leader>gs :Git<CR>
+
+function! SetPythonCommands()
+    nnoremap <buffer> <localleader>el :e term://python3 %<CR>a
+endfunction
+
+augroup MY_AU_GROUP 
+    autocmd!
+    autocmd filetype python call SetPythonCommands()
+augroup END 

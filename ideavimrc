@@ -34,6 +34,8 @@ nnoremap <leader>wm :action HideAllWindows<cr>
 nnoremap <leader>' :action ActivateTerminalToolWindow<cr>
 nnoremap <leader>ft :action ActivateProjectToolWindow<cr>
 nnoremap <leader>fl :action SelectInProjectView<cr>
+nnoremap <leader>sn :nohl<cr>
+nnoremap <leader>qq :action CloseProject<cr>
 " ================= refactor =================
 nnoremap <leader>rr :action RenameElement<cr>
 nnoremap <leader>rn :action Inline<cr>
@@ -58,25 +60,16 @@ nnoremap <leader>gh :action Vcs.ShowTabbedFileHistory<cr>
 nnoremap <leader>gf :action Vcs.UpdateProject<cr>
 nnoremap <leader>gu :action ChangesView.Revert<cr>
 " ================= Test/run =================
+nnoremap <leader>tt :action ChooseRunConfiguration<cr>
+nnoremap <leader>tR :action Run<cr>
+nnoremap <leader>tD :action Debug<cr>
 nnoremap <leader>tr :action RunClass<cr>
 nnoremap <leader>td :action DebugClass<cr>
-
 " ================= cursive/paredit =================
-nnoremap >) :action :cursive.actions.paredit/slurp-forwards<cr>
-nnoremap <) :action :cursive.actions.paredit/barf-forwards<cr>
-nnoremap >( :action :cursive.actions.paredit/slurp-backwards<cr>
-nnoremap <( :action :cursive.actions.paredit/barf-backwards<cr>
-
-" nnoremap ysaf( va( :action :cursive.actions.paredit/wrap-paren<cr> <Esc>
-" nnoremap ysaf) :cursive.actions.paredit/wrap-paren<cr>
-" nnoremap ysaf[ :cursive.actions.paredit/wrap-square<cr>
-" nnoremap ysaf] :cursive.actions.paredit/wrap-square<cr>
-" nnoremap ysaf" :cursive.actions.paredit/wrap-quotes<cr>
-" nnoremap ysaf} :cursive.actions.paredit/wrap-cruly<cr>
-" nnoremap ysaf{ :cursive.actions.paredit/wrap-cruly<cr>
-"":cursive.repl.actions/run-last-sexp
-
-"":cursive.testing.actions/rerun-last-test
-"":cursive.testing.actions/run-ns-tests              <M-S- >
-"":cursive.testing.actions/run-single-test           <M-S-7>
-"":cursive.repl.actions/load-file                    <M-S-L>
+nnoremap ,> :action :cursive.actions.paredit/slurp-forwards<cr>
+nnoremap ,< :action :cursive.actions.paredit/barf-forwards<cr>
+nnoremap ,ee :action :cursive.repl.actions/run-top-sexp<cr>
+vnoremap ,ee :action :cursive.repl.actions/run-top-sexp<cr>
+nnoremap ,el :action :cursive.repl.actions/load-file<cr>
+nnoremap ,et :action :cursive.testing.actions/run-single-test<cr>
+nnoremap ,eT :action :cursive.testing.actions/run-ns-tests<cr>
