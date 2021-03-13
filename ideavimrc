@@ -71,5 +71,6 @@ nnoremap ,< :action :cursive.actions.paredit/barf-forwards<cr>
 nnoremap ,ee :action :cursive.repl.actions/run-top-sexp<cr>
 vnoremap ,ee :action :cursive.repl.actions/run-top-sexp<cr>
 nnoremap ,el :action :cursive.repl.actions/load-file<cr>
+nnoremap ,lr :action :cursive.repl.actions/clear-repl<cr>
 nnoremap ,et :action :cursive.testing.actions/run-single-test<cr>
 nnoremap ,eT :action :cursive.testing.actions/run-ns-tests<cr>

@@ -40,6 +40,8 @@ xnoremap <leader>sr :s//
 command! -range=% IndentJson :<line1>,<line2>!python -m json.tool
 command! Todo belowright split ~/tools/todo/todo.todo <bar> :resize 10 <cr>
 
+set splitbelow splitright
+
 " ------------------------ plug in settings ---------------------------
 call plug#begin('~/.vim/plugged')
 Plug 'mhinz/vim-startify'
