@@ -36,6 +36,7 @@ nnoremap <C-l> :wincmd l<CR>
 vnoremap * y/\V<C-R>=escape(@",'/\')<CR><CR>
 nnoremap <leader>sr :%s//
 xnoremap <leader>sr :s//
+nnoremap <leader>sn :nohl<CR>
 
 command! -range=% IndentJson :<line1>,<line2>!python -m json.tool
 command! Todo belowright split ~/tools/todo/todo.todo <bar> :resize 10 <cr>
@@ -55,9 +56,9 @@ Plug 'tpope/vim-surround'
 Plug 'itchyny/lightline.vim'
 Plug 'morhetz/gruvbox'
 Plug 'mbbill/undotree'
-if has("nvim")
-    Plug 'Olical/conjure', {'tag': 'v4.15.0', 'for':'clojure'}
-endif
+" if has("nvim")
+"     Plug 'Olical/conjure', {'tag': 'v4.15.0', 'for':'clojure'}
+" endif
 call plug#end()
 filetype plugin indent on
 
@@ -77,6 +78,7 @@ let g:lightline = {
       \ },
       \ }
 
+let NERDTreeMinimalUI=1
 function! ToggleNERDTree()
     NERDTreeToggle
     silent NERDTreeMirror
@@ -93,7 +95,7 @@ nnoremap <leader>bD :bufdo bd<CR>
 nnoremap <leader>gs :Git<CR>
 
 function! SetPythonCommands()
-    nnoremap <buffer> <localleader>el :e term://python3 %<CR>a
+    nnoremap <buffer> <localleader>el :e term://python3 %<CR>
 endfunction
 
 augroup MY_AU_GROUP 
