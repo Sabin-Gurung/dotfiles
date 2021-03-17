@@ -7,7 +7,7 @@ set shortmess+=c
 set hidden
 set hlsearch incsearch
 set autoindent copyindent smartindent
-set nu 
+set nu
 set nowrap
 set laststatus=2
 set noswapfile nobackup nowritebackup
@@ -41,7 +41,7 @@ nnoremap <leader>sn :nohl<CR>
 command! -range=% IndentJson :<line1>,<line2>!python -m json.tool
 command! Todo belowright split ~/tools/todo/todo.todo <bar> :resize 10 <cr>
 
-set splitbelow splitright
+set splitright
 
 " ------------------------ plug in settings ---------------------------
 call plug#begin('~/.vim/plugged')
@@ -51,17 +51,17 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'Townk/vim-autoclose'
-Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
 Plug 'itchyny/lightline.vim'
 Plug 'morhetz/gruvbox'
 Plug 'mbbill/undotree'
+Plug 'psliwka/vim-smoothie'
 " if has("nvim")
 "     Plug 'Olical/conjure', {'tag': 'v4.15.0', 'for':'clojure'}
 " endif
 call plug#end()
 filetype plugin indent on
-
 colorscheme gruvbox
 set background=dark
 
