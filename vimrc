@@ -78,6 +78,7 @@ let g:lightline = {
       \ }
 
 let NERDTreeMinimalUI=1
+let NERDTreeWinSize=40
 function! ToggleNERDTree()
     NERDTreeToggle
     silent NERDTreeMirror
