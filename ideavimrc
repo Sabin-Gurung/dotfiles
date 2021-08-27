@@ -69,7 +69,7 @@ nnoremap <leader>td :action DebugClass<cr>
 " ================= cursive/paredit =================
 nnoremap ,> :action :cursive.actions.paredit/slurp-forwards<cr>
 nnoremap ,< :action :cursive.actions.paredit/barf-forwards<cr>
-nnoremap ,ee :action :cursive.repl.actions/run-top-sexp<cr>
+nnoremap ,ei :action :cursive.repl.actions/interrupt<cr>
 vnoremap ,ee :action :cursive.repl.actions/run-top-sexp<cr>
 nnoremap ,el :action :cursive.repl.actions/load-file<cr>
 nnoremap ,lr :action :cursive.repl.actions/clear-repl<cr>

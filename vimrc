@@ -56,9 +56,9 @@ Plug 'tpope/vim-commentary'
 Plug 'itchyny/lightline.vim'
 Plug 'morhetz/gruvbox'
 Plug 'mbbill/undotree'
-" if has("nvim")
-"     Plug 'Olical/conjure', {'tag': 'v4.15.0', 'for':'clojure'}
-" endif
+if has("nvim")
+    Plug 'Olical/conjure', {'tag': 'v4.15.0', 'for':'clojure'}
+endif
 call plug#end()
 filetype plugin indent on
 colorscheme gruvbox
