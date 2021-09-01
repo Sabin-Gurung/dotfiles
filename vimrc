@@ -54,8 +54,8 @@ Plug 'Townk/vim-autoclose'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'itchyny/lightline.vim'
-Plug 'morhetz/gruvbox'
 Plug 'mbbill/undotree'
+Plug 'rafi/awesome-vim-colorschemes'
 if has("nvim")
     Plug 'Olical/conjure', {'tag': 'v4.15.0', 'for':'clojure'}
 endif
