@@ -62,7 +62,10 @@ endif
 call plug#end()
 filetype plugin indent on
 colorscheme gruvbox
-set background=dark
+highlight Normal     ctermbg=NONE guibg=NONE
+highlight LineNr     ctermbg=NONE guibg=NONE
+highlight SignColumn ctermbg=NONE guibg=NONE
+" set background=dark
 
 let g:undotree_SetFocusWhenToggle=1
 
