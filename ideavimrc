@@ -69,9 +69,15 @@ nnoremap <leader>td :action DebugClass<cr>
 " ================= cursive/paredit =================
 nnoremap ,> :action :cursive.actions.paredit/slurp-forwards<cr>
 nnoremap ,< :action :cursive.actions.paredit/barf-forwards<cr>
-nnoremap ,ei :action :cursive.repl.actions/interrupt<cr>
-vnoremap ,ee :action :cursive.repl.actions/run-top-sexp<cr>
-nnoremap ,el :action :cursive.repl.actions/load-file<cr>
 nnoremap ,lr :action :cursive.repl.actions/clear-repl<cr>
-nnoremap ,et :action :cursive.testing.actions/run-single-test<cr>
-nnoremap ,eT :action :cursive.testing.actions/run-ns-tests<cr>
+
+vnoremap ,ee :action :cursive.repl.actions/run-top-sexp<cr>
+nnoremap ,ee :action :cursive.repl.actions/run-top-sexp<cr>
+nnoremap ,ei :action :cursive.repl.actions/interrupt<cr>
+
+nnoremap ,ef :action :cursive.repl.actions/load-file<cr>
+nnoremap ,rr :action :cursive.repl.actions/sync-files<cr>
+
+nnoremap ,tl :action :cursive.testing.actions/rerun-last-test<cr>
+nnoremap ,te :action :cursive.testing.actions/run-single-test<cr>
+nnoremap ,tf :action :cursive.testing.actions/run-ns-tests<cr>

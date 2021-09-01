@@ -95,7 +95,7 @@ nnoremap <leader>bD :bufdo bd<CR>
 nnoremap <leader>gs :Git<CR>
 
 function! SetPythonCommands()
-    nnoremap <buffer> <localleader>el :e term://python3 %<CR>
+    nnoremap <buffer> <localleader>ef :e term://python3 %<CR>
 endfunction
 
 augroup MY_AU_GROUP 
