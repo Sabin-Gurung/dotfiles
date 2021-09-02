@@ -1,5 +1,5 @@
 set hlsearch incsearch
-set relativenumber number
+set number
 set clipboard=unnamed
 set scrolloff=4
 set showmode

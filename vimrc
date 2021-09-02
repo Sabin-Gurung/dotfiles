@@ -17,6 +17,7 @@ set noerrorbells
 set shiftwidth=4 softtabstop=4 expandtab smartindent
 syntax on
 
+
 command! VimSource execute "source ~/.vimrc"
 command! VimConfig execute "e ~/.vimrc"
 
@@ -55,17 +56,20 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'itchyny/lightline.vim'
 Plug 'mbbill/undotree'
+
 Plug 'rafi/awesome-vim-colorschemes'
+Plug 'haishanh/night-owl.vim'
+
 if has("nvim")
     Plug 'Olical/conjure', {'tag': 'v4.15.0', 'for':'clojure'}
 endif
 call plug#end()
 filetype plugin indent on
-colorscheme gruvbox
-highlight Normal     ctermbg=NONE guibg=NONE
-highlight LineNr     ctermbg=NONE guibg=NONE
-highlight SignColumn ctermbg=NONE guibg=NONE
-" set background=dark
+
+colorscheme night-owl
+" highlight Normal     ctermbg=NONE guibg=NONE
+" highlight LineNr     ctermbg=NONE guibg=NONE
+" highlight SignColumn ctermbg=NONE guibg=NONE
 
 let g:undotree_SetFocusWhenToggle=1
 
