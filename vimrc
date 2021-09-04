@@ -56,6 +56,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'itchyny/lightline.vim'
 Plug 'mbbill/undotree'
+Plug 'machakann/vim-highlightedyank'
 
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'haishanh/night-owl.vim'
@@ -92,6 +93,8 @@ function! ToggleNERDTree()
 endfunction
 
 let g:startify_files_number = 7
+
+let g:highlightedyank_highlight_duration = 200
 
 nnoremap <leader><space> :Commands<CR>
 nnoremap <C-p> :Files!<CR>
