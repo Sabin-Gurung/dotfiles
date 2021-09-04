@@ -39,6 +39,8 @@ vnoremap * y/\V<C-R>=escape(@",'/\')<CR><CR>
 nnoremap <leader>sr :%s//
 xnoremap <leader>sr :s//
 nnoremap <leader>sn :nohl<CR>
+nnoremap [q :cprev <CR>
+nnoremap ]q :cnext <CR>
 
 command! -range=% IndentJson :<line1>,<line2>!python -m json.tool
 command! Todo belowright split ~/tools/todo/todo.todo <bar> :resize 10 <cr>
@@ -65,6 +67,7 @@ Plug 'haishanh/night-owl.vim'
 if has("nvim")
     Plug 'Olical/conjure', {'tag': 'v4.15.0', 'for':'clojure'}
 endif
+
 call plug#end()
 filetype plugin indent on
 
@@ -103,6 +106,7 @@ nnoremap <leader>ft :call ToggleNERDTree()<CR>
 nnoremap <leader>fl :NERDTreeFind<CR>
 nnoremap <leader>bb :Buffers<CR>
 nnoremap <leader>bD :bufdo bd<CR>
+nnoremap <leader>bd :bd<CR>
 nnoremap <leader>gs :Git<CR>
 
 function! SetPythonCommands()
