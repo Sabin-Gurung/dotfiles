@@ -24,6 +24,7 @@ command! VimConfig execute "e ~/.vimrc"
 let mapleader = " "
 let maplocalleader = ","
 imap jk <Esc>
+nnoremap Q @q
 nnoremap Y y$
 nnoremap <silent> <C-]> :e #<CR>
 nnoremap <leader>wv :wincmd v<CR>
@@ -54,10 +55,10 @@ Plug 'tpope/vim-fugitive'
 Plug 'Townk/vim-autoclose'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-repeat'
 Plug 'itchyny/lightline.vim'
 Plug 'mbbill/undotree'
 Plug 'machakann/vim-highlightedyank'
-
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'haishanh/night-owl.vim'
 
