@@ -45,6 +45,7 @@ nnoremap <leader>vrs :VimSource<CR>
 nnoremap <leader>ww :wincmd w<CR>
 nnoremap <leader>wv :wincmd v<CR>
 nnoremap <leader>ws :wincmd s<CR>
+nnoremap <leader>wo :wincmd o<CR>
 nnoremap <leader>wq :wincmd q<CR>
 nnoremap <leader>qq :qall<CR>
 nnoremap <leader>qQ :qall!<CR>
@@ -100,7 +101,6 @@ let g:lightline = {
       \   'gitbranch': 'FugitiveHead',
       \ },
       \ }
-
 let NERDTreeMinimalUI=1
 let NERDTreeWinSize=40
 function! ToggleNERDTree()
@@ -119,6 +119,7 @@ nnoremap <leader>fo :History<CR>
 nnoremap <leader>fh :Helptags<CR>
 nnoremap <leader>fr :History:<CR>
 nnoremap <leader>fs :Rg! 
+nnoremap <silent> <leader>f* :Rg! <C-R><C-W><CR>
 nnoremap <leader>f/ :BLines<CR>
 nnoremap <leader>f? :Lines<CR>
 
@@ -132,7 +133,6 @@ nnoremap <leader>gs :Git<CR>
 function! SetPythonCommands()
     nnoremap <buffer> <localleader>ef :e term://python3 %<CR>
 endfunction
-
 augroup MY_AU_GROUP 
     autocmd!
     autocmd filetype python call SetPythonCommands()
