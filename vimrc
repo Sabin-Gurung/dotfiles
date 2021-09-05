@@ -36,15 +36,18 @@ nnoremap <C-l> :wincmd l<CR>
 vnoremap * y/\V<C-R>=escape(@",'/\')<CR><CR>
 nnoremap [q :cprev <CR>
 nnoremap ]q :cnext <CR>
+nnoremap <leader>oq :copen <CR>
 nnoremap <leader>sr :%s//
 xnoremap <leader>sr :s//
 nnoremap <leader>sn :nohl<CR>
 nnoremap <leader>vrc :VimConfig<CR>
 nnoremap <leader>vrs :VimSource<CR>
-nnoremap <leader>wv :wincmd v<CR>
 nnoremap <leader>ww :wincmd w<CR>
+nnoremap <leader>wv :wincmd v<CR>
 nnoremap <leader>ws :wincmd s<CR>
-nnoremap <leader>wo :wincmd o<CR>
+nnoremap <leader>wq :wincmd q<CR>
+nnoremap <leader>qq :qall<CR>
+nnoremap <leader>qQ :qall!<CR>
 
 call plug#begin('~/.vim/plugged')
 Plug 'mhinz/vim-startify'
@@ -67,8 +70,8 @@ endif
 call plug#end()
 filetype plugin indent on
 
-colorscheme night-owl
-" highlight Normal     ctermbg=NONE guibg=NONE
+colorscheme gruvbox
+highlight Normal     ctermbg=NONE guibg=NONE
 " highlight LineNr     ctermbg=NONE guibg=NONE
 " highlight SignColumn ctermbg=NONE guibg=NONE
 
@@ -105,14 +108,25 @@ function! ToggleNERDTree()
     silent NERDTreeMirror
 endfunction
 
-" Plugins Mapping
+" FZF.Mappings
 nnoremap <leader><space> :Commands<CR>
 nnoremap <C-p> :Files!<CR>
+nnoremap <leader>bb :Buffers<CR>
+nnoremap <leader>fC :Colors<CR>
+nnoremap <leader>fM :Maps<CR>
+nnoremap <leader>fT :Filetypes<CR>
+nnoremap <leader>fo :History<CR>
+nnoremap <leader>fh :Helptags<CR>
+nnoremap <leader>fr :History:<CR>
+nnoremap <leader>fs :Rg! 
+nnoremap <leader>f/ :BLines<CR>
+nnoremap <leader>f? :Lines<CR>
+
 nnoremap <leader>ft :call ToggleNERDTree()<CR>
 nnoremap <leader>fl :NERDTreeFind<CR>
-nnoremap <leader>bb :Buffers<CR>
 nnoremap <leader>bD :bufdo bd<CR>
 nnoremap <leader>bd :bd<CR>
+
 nnoremap <leader>gs :Git<CR>
 
 function! SetPythonCommands()
