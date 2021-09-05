@@ -12,12 +12,14 @@ set exchange
 
 let mapleader = " "
 imap jk <Esc>
+nnoremap Q @q
 nnoremap <c-]> :e #<cr>
 nnoremap Y y$
 nnoremap <leader>wv <c-w>v
 nnoremap <leader>ww <c-w>w
 nnoremap <leader>ws <c-w>s
 nnoremap <leader>wo <c-w>o
+nnoremap <leader>wq <c-w>q
 nnoremap <c-h> <c-w>h
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
@@ -32,6 +34,7 @@ nnoremap <leader>pp :action ManageRecentProjects<cr>
 nnoremap <leader>bD :action CloseAllEditorsButActive<cr>
 nnoremap <leader>bb :action Switcher<cr>
 nnoremap <leader>wm :action HideAllWindows<cr>
+nnoremap <leader>fs :action Find<cr>
 nnoremap <leader>' :action ActivateTerminalToolWindow<cr>
 nnoremap <leader>ft :action ActivateProjectToolWindow<cr>
 nnoremap <leader>fl :action SelectInProjectView<cr>
