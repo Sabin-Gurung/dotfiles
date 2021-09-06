@@ -19,7 +19,6 @@ nnoremap <leader>wv <c-w>v
 nnoremap <leader>ww <c-w>w
 nnoremap <leader>ws <c-w>s
 nnoremap <leader>wo <c-w>o
-nnoremap <leader>wq <c-w>q
 nnoremap <c-h> <c-w>h
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
@@ -40,6 +39,8 @@ nnoremap <leader>ft :action ActivateProjectToolWindow<cr>
 nnoremap <leader>fl :action SelectInProjectView<cr>
 nnoremap <leader>sn :nohl<cr>
 nnoremap <leader>qq :action CloseProject<cr>
+nnoremap ]e :action GotoNextError<cr>
+nnoremap [e :action GotoPreviousError<cr>
 " ================= refactor =================
 nnoremap <leader>rr :action RenameElement<cr>
 nnoremap <leader>rn :action Inline<cr>
