@@ -1,6 +1,4 @@
-# [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export FZF_DEFAULT_COMMAND='fd -t f --color=never'
-
 
 alias cls="clear"
 alias ..="cd .."
