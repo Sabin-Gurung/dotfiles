@@ -66,6 +66,7 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'haishanh/night-owl.vim'
 Plug 'godlygeek/tabular'
+Plug 'morhetz/gruvbox'
 if has("nvim")
     Plug 'Olical/conjure', {'tag': 'v4.15.0', 'for':'clojure'}
 endif
