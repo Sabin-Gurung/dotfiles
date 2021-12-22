@@ -28,29 +28,31 @@ xnoremap <leader>sr :s//
 nnoremap ' `
 
 nnoremap <leader><leader> :action GotoAction<cr>
+nnoremap <leader>fc :action GotoClass<cr>
 " ================= general =================
 nnoremap <leader>pp :action ManageRecentProjects<cr>
 nnoremap <leader>bD :action CloseAllEditorsButActive<cr>
 nnoremap <leader>bb :action Switcher<cr>
 nnoremap <leader>wm :action HideAllWindows<cr>
-nnoremap <leader>fs :action Find<cr>
+nnoremap <leader>f/ :action Find<cr>
+nnoremap <leader>fs :action FindInPath<cr>
 nnoremap <leader>' :action ActivateTerminalToolWindow<cr>
-nnoremap <leader>ft :action ActivateProjectToolWindow<cr>
-nnoremap <leader>fl :action SelectInProjectView<cr>
 nnoremap <leader>sn :nohl<cr>
 nnoremap <leader>qq :action CloseProject<cr>
 nnoremap ]e :action GotoNextError<cr>
 nnoremap [e :action GotoPreviousError<cr>
+nnoremap <leader>ft :action ActivateProjectToolWindow<cr>
+nnoremap <leader>fl :action SelectInProjectView<cr>
 " ================= refactor =================
 nnoremap <leader>rr :action RenameElement<cr>
 nnoremap <leader>rn :action Inline<cr>
 nnoremap <leader>rR :action RefactoringMenu<cr>
-nnoremap <leader>rf :action IntroduceField<cr>
+nnoremap <leader>rp :action IntroduceField<cr>
 nnoremap <leader>rc :action IntroduceConstant<cr>
 nnoremap <leader>rm :action ExtractMethod<cr>
 nnoremap <leader>rv :action IntroduceVariable<cr>
 nnoremap <leader>ro :action OptimizeImports<cr>
-nnoremap <leader>rF :action ReformatCode<cr>
+nnoremap <leader>rf :action ReformatCode<cr>
 " ================= generate =================
 nnoremap <leader>rg :action Generate<cr>
 " ================= goto =================
@@ -65,7 +67,7 @@ nnoremap <leader>gh :action Vcs.ShowTabbedFileHistory<cr>
 nnoremap <leader>gf :action Vcs.UpdateProject<cr>
 nnoremap <leader>gu :action ChangesView.Revert<cr>
 " ================= Test/run =================
-nnoremap <leader>tt :action ChooseRunConfiguration<cr>
+nnoremap <leader>tc :action ChooseRunConfiguration<cr>
 nnoremap <leader>tR :action Run<cr>
 nnoremap <leader>tD :action Debug<cr>
 nnoremap <leader>tr :action RunClass<cr>
