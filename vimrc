@@ -56,21 +56,25 @@ nnoremap <leader>bd :bd<CR>
 call plug#begin('~/.vim/plugged')
 Plug 'mhinz/vim-startify'
 Plug 'scrooloose/nerdtree'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
-Plug 'Townk/vim-autoclose'
+" Plug 'Townk/vim-autoclose'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'itchyny/lightline.vim'
 Plug 'mbbill/undotree'
 Plug 'machakann/vim-highlightedyank'
-Plug 'haishanh/night-owl.vim'
 Plug 'godlygeek/tabular'
-Plug 'morhetz/gruvbox'
 Plug 'junegunn/goyo.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+Plug 'haishanh/night-owl.vim'
+Plug 'morhetz/gruvbox'
+
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " if has("nvim")
 "     Plug 'Olical/conjure', {'tag': 'v4.15.0', 'for':'clojure'}
 " endif
@@ -82,18 +86,6 @@ highlight Normal     ctermbg=NONE guibg=NONE
 " highlight LineNr     ctermbg=NONE guibg=NONE
 " highlight SignColumn ctermbg=NONE guibg=NONE
 
-" FZF.vim
-function! s:build_quickfix_list(lines)
-  call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
-  copen
-  cc
-endfunction
-let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
-let g:fzf_action = {
-  \ 'ctrl-q': function('s:build_quickfix_list'),
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit' }
 
 let g:highlightedyank_highlight_duration = 200
 let g:undotree_SetFocusWhenToggle=1
@@ -113,23 +105,32 @@ function! ToggleNERDTree()
     NERDTreeToggle
     silent NERDTreeMirror
 endfunction
-
-" FZF.Mappings
-nnoremap <leader><space> :Commands<CR>
-nnoremap <C-p> :Files!<CR>
-nnoremap <leader>bb :Buffers<CR>
-nnoremap <leader>fC :Colors<CR>
-nnoremap <leader>fM :Maps<CR>
-nnoremap <leader>fT :Filetypes<CR>
-nnoremap <leader>fo :History<CR>
-nnoremap <leader>fh :Helptags<CR>
-nnoremap <leader>fr :History:<CR>
-nnoremap <leader>fs :Rg! 
-nnoremap <silent> <leader>f* :Rg! <C-R><C-W><CR>
 nnoremap <leader>ft :call ToggleNERDTree()<CR>
 nnoremap <leader>fl :NERDTreeFind<CR>
 
+" Telescope
+" FZF.vim
+lua << EOF
+require('telescope').load_extension('fzf')
+EOF
+nnoremap <leader><space> <cmd>Telescope commands<cr>
+" nnoremap <c-p> <cmd>Telescope find_files<cr>
+nnoremap <c-p> <cmd>Telescope git_files<cr>
+nnoremap <leader>bb <cmd>Telescope buffers<cr>
+nnoremap <leader>fC <cmd>Telescope colorscheme<cr>
+nnoremap <leader>fm <cmd>Telescope marks<cr>
+nnoremap <leader>fM <cmd>Telescope keymaps<cr>
+nnoremap <leader>fT <cmd>Telescope filetypes<cr>
+nnoremap <leader>fo <cmd>Telescope oldfiles<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>fr <cmd>Telescope command_history<cr>
+nnoremap <leader>fs <cmd>Telescope live_grep<cr>
+nnoremap <silent> <leader>f* <cmd>Telescope grep_string<cr>
+
 nnoremap <leader>gs :Git<CR>
+nnoremap <leader>ga :Git blame<CR>
+nnoremap <leader>gb <cmd>Telescope git_branches<cr>
+nnoremap <leader>gh <cmd>Telescope git_bcommits<cr>
 
 function! SetPythonCommands()
     nnoremap <buffer> <localleader>ef :e term://python3 %<CR>
@@ -138,6 +139,7 @@ augroup MY_AU_GROUP
     autocmd!
     autocmd filetype python call SetPythonCommands()
 augroup END 
+
 
 " conquerer of completion
 " inoremap <silent><expr> <TAB>
@@ -150,32 +152,32 @@ augroup END
 "   return !col || getline('.')[col - 1]  =~# '\s'
 " endfunction
 
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? coc#_select_confirm() :
+"       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
+" function! s:check_back_space() abort
+"   let col = col('.') - 1
+"   return !col || getline('.')[col - 1]  =~# '\s'
+" endfunction
 " let g:coc_snippet_next = '<tab>'
 
-nnoremap <silent> <localleader>K :call ShowDocumentation()<CR>
-nmap <silent> <localleader>gd <Plug>(coc-definition)
-nmap <silent> <localleader>gr <Plug>(coc-references)
-nmap <silent> <localleader>gy <Plug>(coc-type-definition)
-nmap <silent> <localleader>gi <Plug>(coc-implementation)
-nmap <localleader>rn <Plug>(coc-rename)
-nmap <localleader>ac  <Plug>(coc-codeaction-cursor)
-nmap <localleader>qf  <Plug>(coc-fix-current)
-nmap <localleader>cl  <Plug>(coc-codelens-action)
+" nnoremap <silent> <localleader>K :call ShowDocumentation()<CR>
+" nmap <silent> <localleader>gd <Plug>(coc-definition)
+" nmap <silent> <localleader>gr <Plug>(coc-references)
+" nmap <silent> <localleader>gy <Plug>(coc-type-definition)
+" nmap <silent> <localleader>gi <Plug>(coc-implementation)
+" nmap <localleader>rn <Plug>(coc-rename)
+" nmap <localleader>ac  <Plug>(coc-codeaction-cursor)
+" nmap <localleader>qf  <Plug>(coc-fix-current)
+" nmap <localleader>cl  <Plug>(coc-codelens-action)
 
-function! ShowDocumentation()
-  if CocAction('hasProvider', 'hover')
-    call CocActionAsync('doHover')
-  else
-    call feedkeys('K', 'in')
-  endif
-endfunction
+" function! ShowDocumentation()
+"   if CocAction('hasProvider', 'hover')
+"     call CocActionAsync('doHover')
+"   else
+"     call feedkeys('K', 'in')
+"   endif
+" endfunction
 
