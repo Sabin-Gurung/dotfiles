@@ -21,8 +21,6 @@ syntax on
 
 command! VimSource execute "source ~/.vimrc"
 command! VimConfig execute "e ~/.vimrc"
-command! -range=% IndentJson :<line1>,<line2>!python -m json.tool
-command! Todo belowright split ~/tools/todo/todo.todo <bar> :resize 10 <cr>
 
 let mapleader = " "
 let maplocalleader = ","
@@ -53,19 +51,22 @@ nnoremap <leader>qQ :qall!<CR>
 nnoremap <leader>bD :bufdo bd<CR>
 nnoremap <leader>bd :bd<CR>
 
+command! -range=% IndentJson :<line1>,<line2>!python -m json.tool
+command! Todo belowright split ~/tools/todo/todo.todo <bar> :resize 10 <cr>
+
 call plug#begin('~/.vim/plugged')
-Plug 'mhinz/vim-startify'
-Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-fugitive'
 " Plug 'Townk/vim-autoclose'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-fugitive'
 Plug 'itchyny/lightline.vim'
-Plug 'mbbill/undotree'
+Plug 'scrooloose/nerdtree'
 Plug 'machakann/vim-highlightedyank'
+Plug 'mbbill/undotree'
 Plug 'godlygeek/tabular'
 Plug 'junegunn/goyo.vim'
+Plug 'mhinz/vim-startify'
 
 Plug 'haishanh/night-owl.vim'
 Plug 'morhetz/gruvbox'
@@ -107,6 +108,7 @@ function! ToggleNERDTree()
 endfunction
 nnoremap <leader>ft :call ToggleNERDTree()<CR>
 nnoremap <leader>fl :NERDTreeFind<CR>
+nnoremap <leader>ou :UndotreeToggle<CR>
 
 " Telescope
 " FZF.vim
@@ -114,10 +116,11 @@ lua << EOF
 require('telescope').load_extension('fzf')
 EOF
 nnoremap <leader><space> <cmd>Telescope commands<cr>
-" nnoremap <c-p> <cmd>Telescope find_files<cr>
-nnoremap <c-p> <cmd>Telescope git_files<cr>
+nnoremap <c-p> <cmd>Telescope find_files<cr>
+" nnoremap <c-p> <cmd>Telescope git_files<cr>
 nnoremap <leader>bb <cmd>Telescope buffers<cr>
 nnoremap <leader>fC <cmd>Telescope colorscheme<cr>
+nnoremap <leader>fj <cmd>Telescope jumplist<cr>
 nnoremap <leader>fm <cmd>Telescope marks<cr>
 nnoremap <leader>fM <cmd>Telescope keymaps<cr>
 nnoremap <leader>fT <cmd>Telescope filetypes<cr>
@@ -125,7 +128,9 @@ nnoremap <leader>fo <cmd>Telescope oldfiles<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>fr <cmd>Telescope command_history<cr>
 nnoremap <leader>fs <cmd>Telescope live_grep<cr>
+nnoremap <leader>f/ <cmd>Telescope search_history<cr>
 nnoremap <silent> <leader>f* <cmd>Telescope grep_string<cr>
+nnoremap <leader>fz <cmd>Telescope spell_suggest<cr>
 
 nnoremap <leader>gs :Git<CR>
 nnoremap <leader>ga :Git blame<CR>
