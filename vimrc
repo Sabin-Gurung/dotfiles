@@ -75,8 +75,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
-Plug 'neovim/nvim-lspconfig'
-Plug 'williamboman/nvim-lsp-installer'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'Olical/conjure', {'tag': 'v4.15.0', 'for':'clojure'}
 call plug#end()
 filetype plugin indent on
@@ -113,11 +112,7 @@ nnoremap <leader>ou :UndotreeToggle<CR>
 
 lua << EOF
 require('telescope').load_extension('fzf')
-require("nvim-lsp-installer").setup {}
-require'lspconfig'.pyright.setup{}
-require'lspconfig'.vuels.setup{}
 EOF
-
 " Telescope
 nnoremap <leader><space> <cmd>Telescope commands<cr>
 nnoremap <c-p> <cmd>Telescope find_files<cr>
@@ -149,12 +144,33 @@ augroup MY_AU_GROUP
     autocmd filetype python call SetPythonCommands()
 augroup END 
 
-nnoremap <silent> <localleader>K <cmd>lua vim.lsp.buf.hover()<CR>
-nmap <localleader>rr <cmd>lua vim.lsp.buf.rename()<CR>
-nmap <localleader>gr <cmd>lua vim.lsp.buf.references()<CR>
-nmap <localleader>gd <cmd>lua vim.lsp.buf.declaration()<CR>
-nmap <localleader>gD <cmd>lua vim.lsp.buf.definition()<CR>
-nmap <localleader>gt <cmd>lua vim.lsp.buf.type_definition()<CR>
-nmap <localleader>ac <cmd>lua vim.lsp.buf.code_action()<CR>
-nmap ]e <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
-nmap [e <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+nnoremap <silent> <localleader>K :call ShowDocumentation()<CR>
+nmap <silent> <localleader>gd <Plug>(coc-definition)
+nmap <silent> <localleader>gr <Plug>(coc-references)
+nmap <silent> <localleader>gy <Plug>(coc-type-definition)
+nmap <silent> <localleader>gi <Plug>(coc-implementation)
+nmap <localleader>rr <Plug>(coc-rename)
+nmap <localleader>ac <Plug>(coc-codeaction-cursor)
+nmap <localleader>qf <Plug>(coc-fix-current)
+nmap <localleader>cl <Plug>(coc-codelens-action)
+nmap <silent> [e <Plug>(coc-diagnostic-prev)
+nmap <silent> ]e <Plug>(coc-diagnostic-next)
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
+
