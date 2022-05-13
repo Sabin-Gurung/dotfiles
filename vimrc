@@ -54,6 +54,9 @@ nnoremap <leader>bd :bd<CR>
 command! -range=% IndentJson :<line1>,<line2>!python -m json.tool
 command! Todo belowright split ~/tools/todo/todo.todo <bar> :resize 10 <cr>
 
+let g:conjure#mapping#def_word = v:false
+let g:conjure#client#clojure#nrepl#mapping#refresh_changed = v:false
+
 call plug#begin('~/.vim/plugged')
 Plug 'Townk/vim-autoclose'
 Plug 'tpope/vim-surround'
