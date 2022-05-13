@@ -115,6 +115,7 @@ lua << EOF
 require('telescope').load_extension('fzf')
 require("nvim-lsp-installer").setup {}
 require'lspconfig'.pyright.setup{}
+require'lspconfig'.vuels.setup{}
 EOF
 
 " Telescope
