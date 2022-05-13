@@ -76,7 +76,8 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Plug 'Olical/conjure', {'tag': 'v4.15.0', 'for':'clojure'}
+Plug 'fannheyward/telescope-coc.nvim'
+"sPlug 'Olical/conjure', {'tag': 'v4.15.0', 'for':'clojure'}
 call plug#end()
 filetype plugin indent on
 
@@ -111,7 +112,9 @@ nnoremap <leader>ou :UndotreeToggle<CR>
 
 
 lua << EOF
-require('telescope').load_extension('fzf')
+telescope = require('telescope')
+telescope.load_extension('fzf')
+telescope.load_extension('coc')
 EOF
 " Telescope
 nnoremap <leader><space> <cmd>Telescope commands<cr>
@@ -146,9 +149,11 @@ augroup END
 
 nnoremap <silent> <localleader>K :call ShowDocumentation()<CR>
 nmap <silent> <localleader>gd <Plug>(coc-definition)
-nmap <silent> <localleader>gr <Plug>(coc-references)
-nmap <silent> <localleader>gy <Plug>(coc-type-definition)
-nmap <silent> <localleader>gi <Plug>(coc-implementation)
+nmap <silent> <localleader>gr <cmd>Telescope coc references<CR>
+nmap <silent> <localleader>gq <cmd>Telescope coc diagnostics<CR>
+nmap <silent> <localleader>gQ <cmd>Telescope coc workspace_diagnostics<CR>
+nmap <silent> <localleader>, <cmd>Telescope coc commands<CR>
+nmap <silent> <localleader>gR <Plug>(coc-references)
 nmap <localleader>rr <Plug>(coc-rename)
 nmap <localleader>ac <Plug>(coc-codeaction-cursor)
 nmap <localleader>qf <Plug>(coc-fix-current)
