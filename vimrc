@@ -75,12 +75,15 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" if has("nvim")
-"     Plug 'Olical/conjure', {'tag': 'v4.15.0', 'for':'clojure'}
-" endif
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+
+" Plug 'neovim/nvim-lspconfig'
+" Plug 'Olical/conjure', {'tag': 'v4.15.0', 'for':'clojure'}
 call plug#end()
 filetype plugin indent on
+
 
 colorscheme gruvbox
 highlight Normal     ctermbg=NONE guibg=NONE
@@ -110,11 +113,34 @@ nnoremap <leader>ft :call ToggleNERDTree()<CR>
 nnoremap <leader>fl :NERDTreeFind<CR>
 nnoremap <leader>ou :UndotreeToggle<CR>
 
-" Telescope
-" FZF.vim
+
 lua << EOF
 require('telescope').load_extension('fzf')
+local cmp = require'cmp'
+cmp.setup{
+    sources = cmp.config.sources({
+        -- { name = 'nvim_lsp' },
+        { name = 'buffer' },
+        { name = 'path' }
+    }),
+    mapping = {
+        ["<Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                local entry = cmp.get_selected_entry()
+                if not entry then
+                    cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+                else
+                    cmp.confirm()
+                end
+            else
+                fallback()
+            end
+        end, {"i","s","c",})
+    }
+}
 EOF
+
+" Telescope
 nnoremap <leader><space> <cmd>Telescope commands<cr>
 nnoremap <c-p> <cmd>Telescope find_files<cr>
 " nnoremap <c-p> <cmd>Telescope git_files<cr>
@@ -144,29 +170,6 @@ augroup MY_AU_GROUP
     autocmd!
     autocmd filetype python call SetPythonCommands()
 augroup END 
-
-
-" conquerer of completion
-" inoremap <silent><expr> <TAB>
-"       \ pumvisible() ? "\<C-n>" :
-"       \ CheckBackspace() ? "\<TAB>" :
-"       \ coc#refresh()
-" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-" function! CheckBackspace() abort
-"   let col = col('.') - 1
-"   return !col || getline('.')[col - 1]  =~# '\s'
-" endfunction
-
-" inoremap <silent><expr> <TAB>
-"       \ pumvisible() ? coc#_select_confirm() :
-"       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-"       \ <SID>check_back_space() ? "\<TAB>" :
-"       \ coc#refresh()
-" function! s:check_back_space() abort
-"   let col = col('.') - 1
-"   return !col || getline('.')[col - 1]  =~# '\s'
-" endfunction
-" let g:coc_snippet_next = '<tab>'
 
 " nnoremap <silent> <localleader>K :call ShowDocumentation()<CR>
 " nmap <silent> <localleader>gd <Plug>(coc-definition)
