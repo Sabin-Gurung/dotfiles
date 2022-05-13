@@ -55,7 +55,7 @@ command! -range=% IndentJson :<line1>,<line2>!python -m json.tool
 command! Todo belowright split ~/tools/todo/todo.todo <bar> :resize 10 <cr>
 
 call plug#begin('~/.vim/plugged')
-" Plug 'Townk/vim-autoclose'
+Plug 'Townk/vim-autoclose'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
@@ -77,7 +77,7 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'fannheyward/telescope-coc.nvim'
-"sPlug 'Olical/conjure', {'tag': 'v4.15.0', 'for':'clojure'}
+Plug 'Olical/conjure', {'for':'clojure'}
 call plug#end()
 filetype plugin indent on
 
