@@ -75,11 +75,12 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
-Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
+" Plug 'hrsh7th/nvim-cmp'
+" Plug 'hrsh7th/cmp-buffer'
+" Plug 'hrsh7th/cmp-path'
 
-" Plug 'neovim/nvim-lspconfig'
+Plug 'neovim/nvim-lspconfig'
+Plug 'williamboman/nvim-lsp-installer'
 " Plug 'Olical/conjure', {'tag': 'v4.15.0', 'for':'clojure'}
 call plug#end()
 filetype plugin indent on
@@ -116,28 +117,30 @@ nnoremap <leader>ou :UndotreeToggle<CR>
 
 lua << EOF
 require('telescope').load_extension('fzf')
-local cmp = require'cmp'
-cmp.setup{
-    sources = cmp.config.sources({
-        -- { name = 'nvim_lsp' },
-        { name = 'buffer', keyword_length = 4 },
-        { name = 'path' }
-    }),
-    mapping = {
-        ["<Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                local entry = cmp.get_selected_entry()
-                if not entry then
-                    cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-                else
-                    cmp.confirm()
-                end
-            else
-                fallback()
-            end
-        end, {"i","s","c",})
-    }
-}
+-- local cmp = require'cmp'
+-- cmp.setup{
+--     sources = cmp.config.sources({
+--         -- { name = 'nvim_lsp' },
+--         { name = 'buffer', keyword_length = 4 },
+--         { name = 'path' }
+--     }),
+--     mapping = {
+--         ["<Tab>"] = cmp.mapping(function(fallback)
+--             if cmp.visible() then
+--                 local entry = cmp.get_selected_entry()
+--                 if not entry then
+--                     cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+--                 else
+--                     cmp.confirm()
+--                 end
+--             else
+--                 fallback()
+--             end
+--         end, {"i","s","c",})
+--     }
+-- }
+require("nvim-lsp-installer").setup {}
+require'lspconfig'.pyright.setup{}
 EOF
 
 " Telescope
@@ -171,21 +174,12 @@ augroup MY_AU_GROUP
     autocmd filetype python call SetPythonCommands()
 augroup END 
 
-" nnoremap <silent> <localleader>K :call ShowDocumentation()<CR>
-" nmap <silent> <localleader>gd <Plug>(coc-definition)
-" nmap <silent> <localleader>gr <Plug>(coc-references)
-" nmap <silent> <localleader>gy <Plug>(coc-type-definition)
-" nmap <silent> <localleader>gi <Plug>(coc-implementation)
-" nmap <localleader>rn <Plug>(coc-rename)
-" nmap <localleader>ac  <Plug>(coc-codeaction-cursor)
-" nmap <localleader>qf  <Plug>(coc-fix-current)
-" nmap <localleader>cl  <Plug>(coc-codelens-action)
-
-" function! ShowDocumentation()
-"   if CocAction('hasProvider', 'hover')
-"     call CocActionAsync('doHover')
-"   else
-"     call feedkeys('K', 'in')
-"   endif
-" endfunction
-
+nnoremap <silent> <localleader>K <cmd>lua vim.lsp.buf.hover()<CR>
+nmap <localleader>rr <cmd>lua vim.lsp.buf.rename()<CR>
+nmap <localleader>gr <cmd>lua vim.lsp.buf.references()<CR>
+nmap <localleader>gd <cmd>lua vim.lsp.buf.declaration()<CR>
+nmap <localleader>gD <cmd>lua vim.lsp.buf.definition()<CR>
+nmap <localleader>gt <cmd>lua vim.lsp.buf.type_definition()<CR>
+nmap <localleader>ac <cmd>lua vim.lsp.buf.code_action()<CR>
+nmap ]e <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
+nmap [e <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
