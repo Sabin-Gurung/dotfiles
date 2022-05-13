@@ -11,6 +11,7 @@ set nu
 set nowrap
 set splitright
 set laststatus=2
+set signcolumn=number
 set noswapfile nobackup nowritebackup
 set pumheight=8
 set scrolloff=5
@@ -49,6 +50,8 @@ nnoremap <leader>wo :wincmd o<CR>
 nnoremap <leader>wq :wincmd q<CR>
 nnoremap <leader>qq :qall<CR>
 nnoremap <leader>qQ :qall!<CR>
+nnoremap <leader>bD :bufdo bd<CR>
+nnoremap <leader>bd :bd<CR>
 
 call plug#begin('~/.vim/plugged')
 Plug 'mhinz/vim-startify'
@@ -67,6 +70,7 @@ Plug 'haishanh/night-owl.vim'
 Plug 'godlygeek/tabular'
 Plug 'morhetz/gruvbox'
 Plug 'junegunn/goyo.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " if has("nvim")
 "     Plug 'Olical/conjure', {'tag': 'v4.15.0', 'for':'clojure'}
 " endif
@@ -122,13 +126,8 @@ nnoremap <leader>fh :Helptags<CR>
 nnoremap <leader>fr :History:<CR>
 nnoremap <leader>fs :Rg! 
 nnoremap <silent> <leader>f* :Rg! <C-R><C-W><CR>
-nnoremap <leader>f/ :BLines<CR>
-nnoremap <leader>f? :Lines<CR>
-
 nnoremap <leader>ft :call ToggleNERDTree()<CR>
 nnoremap <leader>fl :NERDTreeFind<CR>
-nnoremap <leader>bD :bufdo bd<CR>
-nnoremap <leader>bd :bd<CR>
 
 nnoremap <leader>gs :Git<CR>
 
@@ -139,3 +138,44 @@ augroup MY_AU_GROUP
     autocmd!
     autocmd filetype python call SetPythonCommands()
 augroup END 
+
+" conquerer of completion
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? "\<C-n>" :
+"       \ CheckBackspace() ? "\<TAB>" :
+"       \ coc#refresh()
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" function! CheckBackspace() abort
+"   let col = col('.') - 1
+"   return !col || getline('.')[col - 1]  =~# '\s'
+" endfunction
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+" let g:coc_snippet_next = '<tab>'
+
+nnoremap <silent> <localleader>K :call ShowDocumentation()<CR>
+nmap <silent> <localleader>gd <Plug>(coc-definition)
+nmap <silent> <localleader>gr <Plug>(coc-references)
+nmap <silent> <localleader>gy <Plug>(coc-type-definition)
+nmap <silent> <localleader>gi <Plug>(coc-implementation)
+nmap <localleader>rn <Plug>(coc-rename)
+nmap <localleader>ac  <Plug>(coc-codeaction-cursor)
+nmap <localleader>qf  <Plug>(coc-fix-current)
+nmap <localleader>cl  <Plug>(coc-codelens-action)
+
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
+
