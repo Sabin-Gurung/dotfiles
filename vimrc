@@ -75,10 +75,6 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
-" Plug 'hrsh7th/nvim-cmp'
-" Plug 'hrsh7th/cmp-buffer'
-" Plug 'hrsh7th/cmp-path'
-
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'
 " Plug 'Olical/conjure', {'tag': 'v4.15.0', 'for':'clojure'}
@@ -117,28 +113,6 @@ nnoremap <leader>ou :UndotreeToggle<CR>
 
 lua << EOF
 require('telescope').load_extension('fzf')
--- local cmp = require'cmp'
--- cmp.setup{
---     sources = cmp.config.sources({
---         -- { name = 'nvim_lsp' },
---         { name = 'buffer', keyword_length = 4 },
---         { name = 'path' }
---     }),
---     mapping = {
---         ["<Tab>"] = cmp.mapping(function(fallback)
---             if cmp.visible() then
---                 local entry = cmp.get_selected_entry()
---                 if not entry then
---                     cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
---                 else
---                     cmp.confirm()
---                 end
---             else
---                 fallback()
---             end
---         end, {"i","s","c",})
---     }
--- }
 require("nvim-lsp-installer").setup {}
 require'lspconfig'.pyright.setup{}
 EOF
