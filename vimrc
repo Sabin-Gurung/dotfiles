@@ -117,6 +117,29 @@ lua << EOF
 telescope = require('telescope')
 telescope.load_extension('fzf')
 telescope.load_extension('coc')
+
+-- find projects
+local actions = require "telescope.actions"
+local builtin = require "telescope.builtin"
+local action_state = require "telescope.actions.state"
+function find_project_enter(prompt_buffer)
+    local text = action_state.get_selected_entry()[1]:gsub(".git", "") 
+    actions.close(prompt_buffer)
+    vim.cmd("cd " .. text)
+    builtin.find_files(require('telescope.themes').get_ivy({width = 0.5}))
+end
+vim.api.nvim_create_user_command(
+"TelescopeProjects",
+function()
+    builtin.find_files({find_command={"fd", ".git$", "-t", "d", "-H", "/Users/sabingurung/workspace", "|", "echo", "hello"},
+    prompt_prefix = "Projects > ",
+    attach_mappings = function (prompt_buffer, map)
+        map("i", "<CR>", find_project_enter)
+        map("n", "<CR>", find_project_enter)
+        return true
+    end
+    }) 
+end, {})
 EOF
 " Telescope
 nnoremap <leader><space> <cmd>Telescope commands<cr>
