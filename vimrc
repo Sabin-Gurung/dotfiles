@@ -114,50 +114,6 @@ nnoremap <leader>ou :UndotreeToggle<CR>
 
 lua << EOF
 telescope = require('telescope')
-local pickers = require "telescope.pickers"
-local finders = require "telescope.finders"
-local sorters = require "telescope.sorters"
-local actions = require "telescope.actions"
-local builtin = require "telescope.builtin"
-local action_state = require "telescope.actions.state"
-
-local project_find_cmdline = {"fd", ".git$", "-t", "d", "-H", "/Users/sabingurung/workspace"}
-local find_projects = finders.new_oneshot_job(
-project_find_cmdline,
-{
-    entry_maker = function(entry)
-        local text = entry:gsub(".git", "") 
-        return { value = text, ordinal = text, display = text }
-    end
-})
-
-function enter(prompt_buffer)
-    local selected = action_state.get_selected_entry()
-    actions.close(prompt_buffer)
-    vim.cmd("cd " .. selected.value)
-    vim.cmd("bufdo! bd")
-    vim.cmd("NERDTreeCWD")
-    vim.cmd("wincmd w")
-    builtin.find_files()
-end
-
-local project_picker = pickers.new({
-    finder = find_projects,
-    sorter = sorters.get_fuzzy_file({}),
-    attach_mappings = function (prompt_buffer, map)
-        map("i", "<CR>", enter)
-        map("n", "<CR>", enter)
-        return true
-    end
-})
-
-vim.api.nvim_create_user_command(
-"TelescopeProjects",
-function()
-    project_picker:find()
-end,
-{})
-
 telescope.load_extension('fzf')
 telescope.load_extension('coc')
 EOF
