@@ -9,7 +9,7 @@ set hlsearch incsearch
 set autoindent copyindent smartindent
 set nu
 set nowrap
-set splitright
+set splitright splitbelow
 set laststatus=2
 set signcolumn=number
 set noswapfile nobackup nowritebackup
@@ -25,6 +25,7 @@ command! VimConfig execute "e ~/.vimrc"
 let mapleader = " "
 let maplocalleader = ","
 imap jk <Esc>
+tnoremap jk <c-\><c-n>
 nnoremap Q @q
 nnoremap Y y$
 nnoremap <silent> <C-]> :e #<CR>
@@ -50,6 +51,7 @@ nnoremap <leader>qq :qall<CR>
 nnoremap <leader>qQ :qall!<CR>
 nnoremap <leader>bD :bufdo bd<CR>
 nnoremap <leader>bd :bd<CR>
+nnoremap <leader>' :sp term://zsh<CR>
 
 command! -range=% IndentJson :<line1>,<line2>!python -m json.tool
 command! Todo belowright split ~/tools/todo/todo.todo <bar> :resize 10 <cr>
@@ -58,7 +60,6 @@ let g:conjure#mapping#def_word = v:false
 let g:conjure#client#clojure#nrepl#mapping#refresh_changed = v:false
 
 call plug#begin('~/.vim/plugged')
-Plug 'Townk/vim-autoclose'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
@@ -84,12 +85,10 @@ Plug 'Olical/conjure', {'for':'clojure'}
 call plug#end()
 filetype plugin indent on
 
-
 colorscheme gruvbox
 highlight Normal     ctermbg=NONE guibg=NONE
 " highlight LineNr     ctermbg=NONE guibg=NONE
 " highlight SignColumn ctermbg=NONE guibg=NONE
-
 
 let g:highlightedyank_highlight_duration = 200
 let g:undotree_SetFocusWhenToggle=1
@@ -113,9 +112,52 @@ nnoremap <leader>ft :call ToggleNERDTree()<CR>
 nnoremap <leader>fl :NERDTreeFind<CR>
 nnoremap <leader>ou :UndotreeToggle<CR>
 
-
 lua << EOF
 telescope = require('telescope')
+local pickers = require "telescope.pickers"
+local finders = require "telescope.finders"
+local sorters = require "telescope.sorters"
+local actions = require "telescope.actions"
+local builtin = require "telescope.builtin"
+local action_state = require "telescope.actions.state"
+
+local project_find_cmdline = {"fd", ".git$", "-t", "d", "-H", "/Users/sabingurung/workspace"}
+local find_projects = finders.new_oneshot_job(
+project_find_cmdline,
+{
+    entry_maker = function(entry)
+        local text = entry:gsub(".git", "") 
+        return { value = text, ordinal = text, display = text }
+    end
+})
+
+function enter(prompt_buffer)
+    local selected = action_state.get_selected_entry()
+    actions.close(prompt_buffer)
+    vim.cmd("cd " .. selected.value)
+    vim.cmd("bufdo! bd")
+    vim.cmd("NERDTreeCWD")
+    vim.cmd("wincmd w")
+    builtin.find_files()
+end
+
+local project_picker = pickers.new({
+    finder = find_projects,
+    sorter = sorters.get_fuzzy_file({}),
+    attach_mappings = function (prompt_buffer, map)
+        map("i", "<CR>", enter)
+        map("n", "<CR>", enter)
+        return true
+    end
+})
+
+vim.api.nvim_create_user_command(
+"TelescopeProjects",
+function()
+    project_picker:find()
+end,
+{})
+
 telescope.load_extension('fzf')
 telescope.load_extension('coc')
 EOF
@@ -130,6 +172,7 @@ nnoremap <leader>fm <cmd>Telescope marks<cr>
 nnoremap <leader>fM <cmd>Telescope keymaps<cr>
 nnoremap <leader>fT <cmd>Telescope filetypes<cr>
 nnoremap <leader>fo <cmd>Telescope oldfiles<cr>
+nnoremap <leader>fp <cmd>TelescopeProjects<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>fr <cmd>Telescope command_history<cr>
 nnoremap <leader>fs <cmd>Telescope live_grep<cr>
@@ -142,12 +185,10 @@ nnoremap <leader>ga :Git blame<CR>
 nnoremap <leader>gb <cmd>Telescope git_branches<cr>
 nnoremap <leader>gh <cmd>Telescope git_bcommits<cr>
 
-function! SetPythonCommands()
-    nnoremap <buffer> <localleader>ef :e term://python3 %<CR>
-endfunction
 augroup MY_AU_GROUP 
     autocmd!
-    autocmd filetype python call SetPythonCommands()
+    autocmd filetype python nnoremap <buffer> <localleader>ef :e term://python3 %<CR>
+    autocmd filetype lua nnoremap <buffer> <localleader>ef :luafile %<CR>
 augroup END 
 
 nnoremap <silent> <localleader>K :call ShowDocumentation()<CR>

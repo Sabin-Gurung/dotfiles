@@ -19,4 +19,3 @@ gc() {
 }
 
 alias cow="fortune | cowsay"
-cow
