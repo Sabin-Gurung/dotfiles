@@ -71,6 +71,7 @@ Plug 'mbbill/undotree'
 Plug 'godlygeek/tabular'
 Plug 'junegunn/goyo.vim'
 Plug 'mhinz/vim-startify'
+Plug 'jiangmiao/auto-pairs'
 
 Plug 'haishanh/night-owl.vim'
 Plug 'morhetz/gruvbox'
@@ -145,6 +146,7 @@ augroup MY_AU_GROUP
     autocmd!
     autocmd filetype python nnoremap <buffer> <localleader>ef :e term://python3 %<CR>
     autocmd filetype lua nnoremap <buffer> <localleader>ef :luafile %<CR>
+    autocmd filetype TelescopePrompt let b:autopairs_enabled = 0
 augroup END 
 
 nnoremap <silent> <localleader>K :call ShowDocumentation()<CR>
