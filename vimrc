@@ -17,6 +17,8 @@ set pumheight=8
 set scrolloff=5
 set noerrorbells
 set shiftwidth=4 softtabstop=4 expandtab smartindent
+set laststatus=3
+highlight WinSeparator guifg=NONE 
 syntax on
 
 command! VimSource execute "source ~/.vimrc"
@@ -122,29 +124,24 @@ telescope.load_extension('coc')
 local actions = require "telescope.actions"
 local builtin = require "telescope.builtin"
 local action_state = require "telescope.actions.state"
-function find_project_enter(prompt_buffer)
-    local text = action_state.get_selected_entry()[1]:gsub(".git", "") 
-    actions.close(prompt_buffer)
-    vim.cmd("cd " .. text)
-    builtin.find_files(require('telescope.themes').get_ivy({width = 0.5}))
-end
-vim.api.nvim_create_user_command(
-"TelescopeProjects",
-function()
+vim.api.nvim_create_user_command("TelescopeProjects", function()
     builtin.find_files({find_command={"fd", ".git$", "-t", "d", "-H", "/Users/sabingurung/workspace", "|", "echo", "hello"},
     prompt_prefix = "Projects > ",
     attach_mappings = function (prompt_buffer, map)
-        map("i", "<CR>", find_project_enter)
-        map("n", "<CR>", find_project_enter)
+        actions.select_default:replace(function() 
+            local text = action_state.get_selected_entry()[1]:gsub(".git", "") 
+            actions.close(prompt_buffer)
+            vim.cmd("cd " .. text)
+            builtin.git_files(require('telescope.themes').get_ivy({width = 0.5}))
+        end)
         return true
-    end
-    }) 
+    end})
 end, {})
+vim.api.nvim_create_user_command("TelescopePFiles", function() if not pcall(builtin.git_files, {}) then builtin.find_files() end end, {})
 EOF
 " Telescope
 nnoremap <leader><space> <cmd>Telescope commands<cr>
-nnoremap <c-p> <cmd>Telescope find_files<cr>
-" nnoremap <c-p> <cmd>Telescope git_files<cr>
+nnoremap <c-p> <cmd>TelescopePFiles<cr>
 nnoremap <leader>bb <cmd>Telescope buffers<cr>
 nnoremap <leader>fC <cmd>Telescope colorscheme<cr>
 nnoremap <leader>fj <cmd>Telescope jumplist<cr>

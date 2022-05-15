@@ -10,7 +10,7 @@ alias vd="nvim ~/tools/todo/todo.todo"
 alias vpd='cpd && nvim'
 
 alias gs="git status"
-alias gbd="git checkout master && git branch | grep -v master | xargs git branch -D"
+alias gbd="git branch | grep -E -v 'master|main' | xargs git branch -D"
 alias gp="git push"
 alias gpl="git pull --all"
 alias gb="git checkout -b"
