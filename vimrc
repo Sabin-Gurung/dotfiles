@@ -117,9 +117,19 @@ nnoremap <leader>ou :UndotreeToggle<CR>
 
 lua << EOF
 telescope = require('telescope')
-telescope.load_extension('fzf')
-telescope.load_extension('coc')
-
+local filesOpts = {previewer = false}
+telescope.setup{
+    defaults = {
+        layout_strategy = "vertical",
+        sorting_strategy = "ascending",
+        layout_config = { prompt_position = "top" }
+    },
+    pickers = {
+        find_files = filesOpts,
+        git_files = filesOpts,
+        buffers = filesOpts,
+    }
+}
 -- find projects
 local actions = require "telescope.actions"
 local builtin = require "telescope.builtin"
@@ -132,12 +142,15 @@ vim.api.nvim_create_user_command("TelescopeProjects", function()
             local text = action_state.get_selected_entry()[1]:gsub(".git", "") 
             actions.close(prompt_buffer)
             vim.cmd("cd " .. text)
-            builtin.git_files(require('telescope.themes').get_ivy({width = 0.5}))
+            builtin.git_files()
         end)
         return true
     end})
 end, {})
 vim.api.nvim_create_user_command("TelescopePFiles", function() if not pcall(builtin.git_files, {}) then builtin.find_files() end end, {})
+-- extensions
+telescope.load_extension('fzf')
+telescope.load_extension('coc')
 EOF
 " Telescope
 nnoremap <leader><space> <cmd>Telescope commands<cr>
@@ -153,6 +166,7 @@ nnoremap <leader>fp <cmd>TelescopeProjects<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>fr <cmd>Telescope command_history<cr>
 nnoremap <leader>fs <cmd>Telescope live_grep<cr>
+nnoremap <leader>fS :Telescope grep_string search=
 nnoremap <leader>f/ <cmd>Telescope search_history<cr>
 nnoremap <silent> <leader>f* <cmd>Telescope grep_string<cr>
 nnoremap <leader>fz <cmd>Telescope spell_suggest<cr>
@@ -164,7 +178,7 @@ nnoremap <leader>gh <cmd>Telescope git_bcommits<cr>
 
 augroup MY_AU_GROUP 
     autocmd!
-    autocmd filetype python nnoremap <buffer> <localleader>ef :e term://python3 %<CR>
+    autocmd filetype python nnoremap <buffer> <localleader>ef :sp term://python3 %<CR>
     autocmd filetype lua nnoremap <buffer> <localleader>ef :luafile %<CR>
     autocmd filetype TelescopePrompt let b:autopairs_enabled = 0
 augroup END 
