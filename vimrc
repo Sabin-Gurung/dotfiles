@@ -8,6 +8,7 @@ set hidden
 set hlsearch incsearch
 set autoindent copyindent smartindent
 set nu
+set encoding=utf-8
 set nowrap
 set splitright splitbelow
 set laststatus=2
@@ -18,7 +19,6 @@ set scrolloff=5
 set noerrorbells
 set shiftwidth=4 softtabstop=4 expandtab smartindent
 set laststatus=3
-highlight WinSeparator guifg=NONE 
 syntax on
 
 command! VimSource execute "source ~/.vimrc"
@@ -52,8 +52,8 @@ nnoremap <leader>wq :wincmd q<CR>
 nnoremap <leader>qq :qall<CR>
 nnoremap <leader>qQ :qall!<CR>
 nnoremap <leader>bD :bufdo bd<CR>
-nnoremap <leader>bd :bd<CR>
-nnoremap <leader>' :sp term://zsh<CR>
+nnoremap <leader>bd :bd!<CR>
+nnoremap <leader>' :12sp term://zsh<CR>
 
 command! -range=% IndentJson :<line1>,<line2>!python -m json.tool
 command! Todo belowright split ~/tools/todo/todo.todo <bar> :resize 10 <cr>
@@ -85,13 +85,15 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'fannheyward/telescope-coc.nvim'
 Plug 'Olical/conjure', {'for':'clojure'}
+Plug 'udalov/kotlin-vim'
 call plug#end()
 filetype plugin indent on
 
 colorscheme gruvbox
-highlight Normal     ctermbg=NONE guibg=NONE
-" highlight LineNr     ctermbg=NONE guibg=NONE
+" highlight Normal     ctermbg=NONE guibg=NONE
+" hsghlight LineNr     ctermbg=NONE guibg=NONE
 " highlight SignColumn ctermbg=NONE guibg=NONE
+highlight WinSeparator guifg=NONE 
 
 let g:highlightedyank_highlight_duration = 200
 let g:undotree_SetFocusWhenToggle=1
