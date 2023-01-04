@@ -38,6 +38,8 @@ nnoremap <C-l> :wincmd l<CR>
 vnoremap * y/\V<C-R>=escape(@",'/\')<CR><CR>
 nnoremap [q :cprev <CR>
 nnoremap ]q :cnext <CR>
+nnoremap n nzzzv
+nnoremap N Nzzzv
 nnoremap <leader>oq :copen <CR>
 nnoremap <leader>sr :%s//
 xnoremap <leader>sr :s//
@@ -55,7 +57,7 @@ nnoremap <leader>bD :bufdo bd<CR>
 nnoremap <leader>bd :bd!<CR>
 nnoremap <leader>' :12sp term://zsh<CR>
 
-command! -range=% IndentJson :<line1>,<line2>!python -m json.tool
+command! -range=% IndentJson :<line1>,<line2>!python3 -m json.tool
 command! Todo belowright split ~/tools/todo/todo.todo <bar> :resize 10 <cr>
 
 let g:conjure#mapping#def_word = v:false

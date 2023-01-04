@@ -20,6 +20,10 @@ nnoremap <leader>ww <c-w>w
 nnoremap <leader>ws <c-w>s
 nnoremap <leader>wo <c-w>o
 nnoremap <c-h> <c-w>h
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+nnoremap n nzzzv
+nnoremap N Nzzzv
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
