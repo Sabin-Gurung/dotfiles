@@ -130,7 +130,7 @@ nnoremap <leader>fl :NERDTreeFind<CR>
 ]]
 -- ======== telescope ===================
 local telescope = require('telescope')
-local filesOpts = {previewer = false}
+local filesOpts = {previewer = false, find_command={"rg", "--ignore", "-L", "--hidden", "--files"}}
 telescope.setup{
     defaults = {
         layout_strategy = "vertical",
