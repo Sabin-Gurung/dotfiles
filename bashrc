@@ -3,7 +3,7 @@ export FZF_DEFAULT_COMMAND='fd -t f --color=never'
 alias cls="clear"
 alias ..="cd .."
 alias ...="cd ../.."
-alias cpd='cd $(fd .git$ -t d -H ~/workspace | sed -e "s/.git//g" | fzf --height 45% --reverse)'
+alias cpd='cd $(fd .git$ -t d -H ~/workspace | sed -e "s/.git\\///g" | fzf --height 45% --reverse)'
 
 alias v="nvim"
 alias vc="cd ~/.config/nvim/ && nvim"
