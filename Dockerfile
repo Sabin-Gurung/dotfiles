@@ -12,7 +12,8 @@ RUN apk --no-cache add \
     git \
     libtool \
     pkgconf \
-    unzip
+    unzip \
+    fzf
 
 # Build neovim (and use it as an example codebase
 RUN git clone https://github.com/neovim/neovim.git
