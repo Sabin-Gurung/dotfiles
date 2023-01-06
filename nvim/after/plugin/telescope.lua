@@ -35,6 +35,7 @@ vim.keymap.set('n', '<leader>f*', builtin.grep_string, {desc = 'telescope search
 vim.keymap.set('n', '<leader>fz', builtin.spell_suggest, {desc = 'telescope spell suggest'})
 vim.keymap.set('n', '<leader>gb', builtin.git_branches, { desc = 'telescope git branches' })
 vim.keymap.set('n', '<leader>gh', builtin.git_bcommits, {desc = 'telescope git commits'})
+vim.keymap.set('n', '<leader>p', telescope.extensions.neoclip.default, {desc = 'telescope neoclip'})
 
 pcall(require('telescope').load_extension,'fzf')
 
