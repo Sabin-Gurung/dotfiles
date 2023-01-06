@@ -84,8 +84,7 @@ require('packer').startup(function(use)
     use 'tpope/vim-repeat'
     use 'tpope/vim-fugitive'
     use 'mbbill/undotree'
-    use { 'morhetz/gruvbox', }
-    use { 'navarasu/onedark.nvim', config = 'vim.cmd[[colorscheme onedark]]' }
+    use { 'morhetz/gruvbox', config = 'vim.cmd[[colorscheme gruvbox]]' }
     use 'jiangmiao/auto-pairs'
     use 'nvim-lualine/lualine.nvim'
     use 'mhinz/vim-startify'
