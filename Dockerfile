@@ -29,5 +29,6 @@ RUN apk --no-cache add \
 
 # Copy the kickstart.nvim init.lua
 COPY ./nvim/init.lua /root/.config/nvim/init.lua
+ADD ./nvim/after /root/.config/nvim/after
 
 WORKDIR /neovim
