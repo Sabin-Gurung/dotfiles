@@ -89,7 +89,7 @@ require('packer').startup(function(use)
     use 'nvim-lualine/lualine.nvim'
     use 'mhinz/vim-startify'
     use 'scrooloose/nerdtree'
-    use { "AckslD/nvim-neoclip.lua", config = function() require('neoclip').setup{default_register = '*'} end, }
+    use { "AckslD/nvim-neoclip.lua", config = function() require('neoclip').setup{ default_register = '*', on_select = { move_to_front = true}} end }
     use { 'Olical/conjure' , ft = 'clojure'}
     use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
     use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
