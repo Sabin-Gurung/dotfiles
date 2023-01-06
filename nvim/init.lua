@@ -7,7 +7,7 @@ set shortmess+=c
 set hidden
 set hlsearch incsearch
 set autoindent copyindent smartindent
-highlight WinSeparator guifg=NONE 
+highlight WinSeparator guifg=NONE
 set nu
 set encoding=utf-8
 set nowrap
@@ -20,6 +20,8 @@ set scrolloff=5
 set noerrorbells
 set shiftwidth=4 softtabstop=4 expandtab smartindent
 set laststatus=3
+highlight WinSeparator guifg=NONE
+autocmd BufWritePre * :%s/\s\+$//e
 nohl
 syntax on
 let mapleader = " "
