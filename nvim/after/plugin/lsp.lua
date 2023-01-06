@@ -15,6 +15,7 @@ local on_attach = function(_, bufnr)
     vim.keymap.set('n', '[e', vim.diagnostic.goto_prev, {buffer = bufnr})
     vim.keymap.set('n', ']e', vim.diagnostic.goto_next, {buffer = bufnr})
 end
+
 local servers = {
     sumneko_lua = {
         Lua = {
@@ -23,6 +24,7 @@ local servers = {
         },
     },
 }
+
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 mason_lsp.setup_handlers {

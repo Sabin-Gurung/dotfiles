@@ -7,6 +7,7 @@ set shortmess+=c
 set hidden
 set hlsearch incsearch
 set autoindent copyindent smartindent
+highlight WinSeparator guifg=NONE 
 set nu
 set encoding=utf-8
 set nowrap
@@ -72,6 +73,7 @@ local ensure_packer = function()
     end
     return false
 end
+
 local packer_bootstrap = ensure_packer()
 require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
@@ -80,7 +82,8 @@ require('packer').startup(function(use)
     use 'tpope/vim-repeat'
     use 'tpope/vim-fugitive'
     use 'mbbill/undotree'
-    use { 'morhetz/gruvbox', config = 'vim.cmd[[colorscheme gruvbox]]' }
+    use { 'morhetz/gruvbox', }
+    use { 'navarasu/onedark.nvim', config = 'vim.cmd[[colorscheme onedark]]' }
     use 'jiangmiao/auto-pairs'
     use 'nvim-lualine/lualine.nvim'
     use 'mhinz/vim-startify'
