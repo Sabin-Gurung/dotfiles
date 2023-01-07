@@ -18,7 +18,7 @@ telescope.setup{
 }
 
 vim.keymap.set('n', '<leader><space>', builtin.commands, {desc = 'telescope commands'})
-vim.keymap.set('n', '<c-p>', function() if not pcall(builtin.git_files, {}) then builtin.find_files() end end, {desc = 'telescope project files'})
+vim.keymap.set('n', '<c-p>', function() if not pcall(builtin.git_files, {show_untracked = true}) then builtin.find_files() end end, {desc = 'telescope project files'})
 vim.keymap.set('n', '<leader>bb', builtin.buffers, {desc = 'telescope buffers'})
 vim.keymap.set('n', '<leader>fC', builtin.colorscheme, {desc = 'telescope colors'})
 vim.keymap.set('n', '<leader>fj', builtin.jumplist, {desc = 'telescope jumplist'})
