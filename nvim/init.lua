@@ -31,10 +31,10 @@ tnoremap jk <c-\><c-n>
 nnoremap Q @q
 nnoremap Y y$
 nnoremap <silent> <C-]> :e #<CR>
-nnoremap <C-h> :wincmd h<CR>
-nnoremap <C-j> :wincmd j<CR>
-nnoremap <C-k> :wincmd k<CR>
-nnoremap <C-l> :wincmd l<CR>
+nnoremap <leader>wh :wincmd h<CR>
+nnoremap <leader>wj :wincmd j<CR>
+nnoremap <leader>wk :wincmd k<CR>
+nnoremap <leader>wl :wincmd l<CR>
 vnoremap * y/\V<C-R>=escape(@",'/\')<CR><CR>
 nnoremap [q :cprev <CR>
 nnoremap ]q :cnext <CR>
@@ -42,6 +42,8 @@ nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
 nnoremap n nzzzv
 nnoremap N Nzzzv
+nnoremap <C-j> jzz
+nnoremap <C-k> kzz
 nnoremap <leader>oq :copen <CR>
 nnoremap <leader>sr :%s//
 xnoremap <leader>sr :s//
@@ -56,6 +58,8 @@ nnoremap <leader>qQ :qall!<CR>
 nnoremap <leader>bD :bufdo bd<CR>
 nnoremap <leader>bd :bd!<CR>
 nnoremap <leader>' :12sp term://zsh<CR>
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
 
 command! VimSource execute "source ~/.config/nvim/init.lua"
 command! VimConfig execute "e ~/.config/nvim/init.lua"
