@@ -21,7 +21,7 @@ set noerrorbells
 set shiftwidth=4 softtabstop=4 expandtab smartindent
 set laststatus=3
 highlight WinSeparator guifg=NONE
-autocmd BufWritePre * :%s/\s\+$//e
+" autocmd BufWritePre * :%s/\s\+$//e
 nohl
 syntax on
 let mapleader = " "

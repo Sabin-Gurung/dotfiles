@@ -17,6 +17,7 @@ augroup MY_AU_GROUP
 augroup END
 let g:conjure#mapping#def_word = v:false
 let g:conjure#client#clojure#nrepl#mapping#refresh_changed = v:false
+let g:conjure#client#clojure#nrepl#connection#auto_repl#enabled = v:false
 ]]
 
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
