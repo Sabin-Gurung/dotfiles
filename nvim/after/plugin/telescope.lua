@@ -13,7 +13,14 @@ telescope.setup{
     pickers = {
         find_files = file_opts,
         git_files = file_opts,
-        buffers = file_opts,
+        buffers = {
+            previewer = false,
+            mappings = {
+                i = {
+                    ["<c-k>"] = actions.delete_buffer + actions.move_to_top
+                }
+            }
+        },
     }
 }
 
