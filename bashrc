@@ -10,6 +10,7 @@ alias vc="cd ~/.config/nvim/ && nvim"
 alias vd="cd ~/dotfiles/ && nvim"
 alias vpd='cpd && nvim'
 
+alias lgs="lazygit"
 alias gs="git status"
 alias gbd="git branch | grep -E -v 'master|main' | xargs git branch -D"
 alias gp="git push"
