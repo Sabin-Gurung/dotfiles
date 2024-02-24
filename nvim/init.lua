@@ -68,50 +68,13 @@ nnoremap <leader>vrc :VimConfig<CR>
 nnoremap <leader>vrs :VimSource<CR>
 ]]
 
--- ====== package manager ==============
-local ensure_packer = function()
-    local fn = vim.fn
-    local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-    if fn.empty(fn.glob(install_path)) > 0 then
-        fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-        vim.cmd [[packadd packer.nvim]]
-        return true
-    end
-    return false
-end
+local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+vim.api.nvim_create_autocmd('TextYankPost', {
+    callback = function() vim.highlight.on_yank() end,
+    group = highlight_group,
+    pattern = '*',
+})
 
-local packer_bootstrap = ensure_packer()
-require('packer').startup(function(use)
-    use 'wbthomason/packer.nvim'
-    use 'tpope/vim-surround'
-    use 'tpope/vim-commentary'
-    use 'tpope/vim-repeat'
-    use 'tpope/vim-fugitive'
-    use 'mbbill/undotree'
-    use { 'morhetz/gruvbox', config = 'vim.cmd[[colorscheme gruvbox]]' }
-    use 'jiangmiao/auto-pairs'
-    use 'nvim-lualine/lualine.nvim'
-    use 'mhinz/vim-startify'
-    use 'scrooloose/nerdtree'
-    use { "AckslD/nvim-neoclip.lua", config = function() require('neoclip').setup{ default_register = '*', on_select = { move_to_front = true}} end }
-    use { 'Olical/conjure' , ft = 'clojure'}
-    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
-    use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
-    use {
-        'neovim/nvim-lspconfig',
-        'williamboman/mason.nvim',
-        'williamboman/mason-lspconfig.nvim',
-        'folke/neodev.nvim',
-    }
-    use {
-        'hrsh7th/nvim-cmp',
-        'hrsh7th/cmp-buffer',
-        'hrsh7th/cmp-path',
-        'hrsh7th/cmp-nvim-lsp',
-        'saadparwaiz1/cmp_luasnip',
-        'L3MON4D3/LuaSnip',
-    }
+-- ====== packages ==============
+require("core.plugins")
 
-    if packer_bootstrap then require('packer').sync() end
-end)
--- --======================================

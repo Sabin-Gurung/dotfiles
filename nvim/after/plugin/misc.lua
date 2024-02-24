@@ -2,8 +2,8 @@ local function nerd_tree_toggle()
     vim.cmd[[NERDTreeToggle
     silent NERDTreeMirror]]
 end
-
 vim.keymap.set('n', '<leader>ft', nerd_tree_toggle, {desc = "nerd_tree_toggle"})
+
 vim.cmd [[
 nnoremap <leader>fl :NERDTreeFind<CR>
 nnoremap <leader>gs :Git<CR>
@@ -19,13 +19,6 @@ let g:conjure#mapping#def_word = v:false
 let g:conjure#client#clojure#nrepl#mapping#refresh_changed = v:false
 let g:conjure#client#clojure#nrepl#connection#auto_repl#enabled = v:false
 ]]
-
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
-    callback = function() vim.highlight.on_yank() end,
-    group = highlight_group,
-    pattern = '*',
-})
 
 vim.g.undotree_SetFocusWhenToggle=1
 vim.g.NERDTreeMinimalUI=1

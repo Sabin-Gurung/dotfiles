@@ -21,6 +21,14 @@ telescope.setup{
                 }
             }
         },
+    },
+    extensions = {
+        file_browser = {
+            previewer = false,
+            dir_icon = "▸",
+            theme = "ivy",
+            git_status = false
+        }
     }
 }
 
@@ -45,6 +53,7 @@ vim.keymap.set('n', '<leader>gh', builtin.git_bcommits, {desc = 'telescope git c
 vim.keymap.set('n', '<leader>p', telescope.extensions.neoclip.default, {desc = 'telescope neoclip'})
 
 pcall(require('telescope').load_extension,'fzf')
+require("telescope").load_extension "file_browser"
 
 vim.api.nvim_create_user_command("TelescopeProjects", function()
     builtin.find_files({find_command={"fd", ".git$", "-t", "d", "-H", "/Users/sabingurung/workspace", "|", "echo", "hello"},
