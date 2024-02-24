@@ -59,6 +59,7 @@ require('lazy').setup({
         'saadparwaiz1/cmp_luasnip',
         'L3MON4D3/LuaSnip',
     },
+    { 'ThePrimeagen/harpoon' },
     {
         'nvim-telescope/telescope.nvim', branch = '0.1.x',
         dependencies = {
