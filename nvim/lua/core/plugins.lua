@@ -21,6 +21,40 @@ require('lazy').setup({
     'nvim-lualine/lualine.nvim',
     'mhinz/vim-startify',
     {
+        'neovim/nvim-lspconfig',
+        'williamboman/mason.nvim',
+        'williamboman/mason-lspconfig.nvim',
+        'folke/neodev.nvim',
+    },
+    {
+        'hrsh7th/nvim-cmp',
+        'hrsh7th/cmp-buffer',
+        'hrsh7th/cmp-path',
+        'hrsh7th/cmp-nvim-lsp',
+        'saadparwaiz1/cmp_luasnip',
+        'L3MON4D3/LuaSnip',
+    },
+    { 'morhetz/gruvbox', config = function () vim.cmd[[colorscheme gruvbox]] end },
+    { "AckslD/nvim-neoclip.lua", config = function() require('neoclip').setup{ default_register = '*', on_select = { move_to_front = true}} end },
+    { 'Olical/conjure' , ft = 'clojure' },
+    {
+        'nvim-telescope/telescope.nvim', branch = '0.1.x',
+        dependencies = {
+            'nvim-lua/plenary.nvim',
+            "nvim-telescope/telescope-file-browser.nvim",
+            { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 },
+        }
+    },
+    {
+        'ThePrimeagen/harpoon',
+        config = function ()
+            local harpoon_mark = require("harpoon.mark")
+            local harpoon_ui = require("harpoon.ui")
+            vim.keymap.set('n', '<leader>ha', function () harpoon_mark.add_file() end, {desc = 'Harpoon add'})
+            vim.keymap.set('n', '<leader>ho', function () harpoon_ui.toggle_quick_menu() end, {desc = 'Harpoon list'})
+        end
+    },
+    {
         enabled = false,
         'scrooloose/nerdtree',
         config = function ()
@@ -45,31 +79,5 @@ require('lazy').setup({
             -- vim.cmd [[ nnoremap <leader>ft :CHADopen<CR> ]]
         end
     },
-    {
-        'neovim/nvim-lspconfig',
-        'williamboman/mason.nvim',
-        'williamboman/mason-lspconfig.nvim',
-        'folke/neodev.nvim',
-    },
-    {
-        'hrsh7th/nvim-cmp',
-        'hrsh7th/cmp-buffer',
-        'hrsh7th/cmp-path',
-        'hrsh7th/cmp-nvim-lsp',
-        'saadparwaiz1/cmp_luasnip',
-        'L3MON4D3/LuaSnip',
-    },
-    { 'ThePrimeagen/harpoon' },
-    {
-        'nvim-telescope/telescope.nvim', branch = '0.1.x',
-        dependencies = {
-            'nvim-lua/plenary.nvim',
-            "nvim-telescope/telescope-file-browser.nvim",
-            { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 },
-        }
-    },
-    { 'morhetz/gruvbox', config = function () vim.cmd[[colorscheme gruvbox]] end },
-    { "AckslD/nvim-neoclip.lua", config = function() require('neoclip').setup{ default_register = '*', on_select = { move_to_front = true}} end },
-    { 'Olical/conjure' , ft = 'clojure' },
 })
 
