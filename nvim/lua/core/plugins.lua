@@ -21,6 +21,7 @@ require('lazy').setup({
     'nvim-lualine/lualine.nvim',
     'mhinz/vim-startify',
     {
+        enabled = false,
         'scrooloose/nerdtree',
         config = function ()
             local function nerd_tree_toggle()
@@ -29,11 +30,18 @@ require('lazy').setup({
             end
             vim.keymap.set('n', '<leader>ft', nerd_tree_toggle, {desc = "nerd_tree_toggle"})
             vim.cmd [[ nnoremap <leader>fl :NERDTreeFind<CR> ]]
+            vim.g.NERDTreeMinimalUI=1
+            vim.g.NERDTreeWinSize=40
         end
     },
-    -- { 
-    --     'ms-jpq/chadtree' 
-    -- },
+    {
+        'ms-jpq/chadtree',
+        config = function ()
+            local chadtree_settings = { theme = { icon_glyph_set = "ascii", text_colour_set = "nord" } }
+            vim.api.nvim_set_var("chadtree_settings", chadtree_settings)
+            vim.cmd [[ nnoremap <leader>ft :CHADopen<CR> ]]
+        end
+    },
     {
         'neovim/nvim-lspconfig',
         'williamboman/mason.nvim',
