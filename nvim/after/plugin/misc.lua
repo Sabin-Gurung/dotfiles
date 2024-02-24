@@ -1,11 +1,4 @@
-local function nerd_tree_toggle()
-    vim.cmd[[NERDTreeToggle
-    silent NERDTreeMirror]]
-end
-vim.keymap.set('n', '<leader>ft', nerd_tree_toggle, {desc = "nerd_tree_toggle"})
-
 vim.cmd [[
-nnoremap <leader>fl :NERDTreeFind<CR>
 nnoremap <leader>gs :Git<CR>
 nnoremap <leader>ga :Git blame<CR>
 nnoremap <leader>ou :UndotreeToggle<CR>

@@ -20,7 +20,20 @@ require('lazy').setup({
     'jiangmiao/auto-pairs',
     'nvim-lualine/lualine.nvim',
     'mhinz/vim-startify',
-    'scrooloose/nerdtree',
+    {
+        'scrooloose/nerdtree',
+        config = function ()
+            local function nerd_tree_toggle()
+                vim.cmd[[NERDTreeToggle
+                silent NERDTreeMirror]]
+            end
+            vim.keymap.set('n', '<leader>ft', nerd_tree_toggle, {desc = "nerd_tree_toggle"})
+            vim.cmd [[ nnoremap <leader>fl :NERDTreeFind<CR> ]]
+        end
+    },
+    -- { 
+    --     'ms-jpq/chadtree' 
+    -- },
     {
         'neovim/nvim-lspconfig',
         'williamboman/mason.nvim',
