@@ -14,8 +14,6 @@ let g:conjure#client#clojure#nrepl#connection#auto_repl#enabled = v:false
 ]]
 
 vim.g.undotree_SetFocusWhenToggle=1
-vim.g.NERDTreeMinimalUI=1
-vim.g.NERDTreeWinSize=40
 require('lualine').setup {
     options = {
         icons_enabled = false,

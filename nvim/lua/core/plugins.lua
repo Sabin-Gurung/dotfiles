@@ -36,10 +36,13 @@ require('lazy').setup({
     },
     {
         'ms-jpq/chadtree',
+        keys = {
+            { "<leader>ft", "<cmd>CHADopen<cr>", desc = "CHAD Tree" },
+        },
         config = function ()
             local chadtree_settings = { theme = { icon_glyph_set = "ascii", text_colour_set = "nord" } }
             vim.api.nvim_set_var("chadtree_settings", chadtree_settings)
-            vim.cmd [[ nnoremap <leader>ft :CHADopen<CR> ]]
+            -- vim.cmd [[ nnoremap <leader>ft :CHADopen<CR> ]]
         end
     },
     {
