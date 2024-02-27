@@ -16,7 +16,6 @@ require('lazy').setup({
     'tpope/vim-commentary',
     'tpope/vim-repeat',
     'tpope/vim-fugitive',
-    'mbbill/undotree',
     'jiangmiao/auto-pairs',
     'nvim-lualine/lualine.nvim',
     'mhinz/vim-startify',
@@ -34,17 +33,16 @@ require('lazy').setup({
         'saadparwaiz1/cmp_luasnip',
         'L3MON4D3/LuaSnip',
     },
+    {'mbbill/undotree', keys = { { "<leader>ou", "<cmd>UndotreeToggle<cr>", desc = "Undotree" } } },
     { 'morhetz/gruvbox', config = function () vim.cmd[[colorscheme gruvbox]] end },
     { "AckslD/nvim-neoclip.lua", config = function() require('neoclip').setup{ default_register = '*', on_select = { move_to_front = true}} end },
     { 'Olical/conjure' , ft = 'clojure' },
     {
         'nvim-telescope/telescope.nvim', branch = '0.1.x',
-        dependencies = {
-            'nvim-lua/plenary.nvim',
-            "nvim-telescope/telescope-file-browser.nvim",
-            { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', cond = vim.fn.executable 'make' == 1 },
-        }
+        dependencies = { 'nvim-lua/plenary.nvim', }
     },
+    "nvim-telescope/telescope-file-browser.nvim",
+    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', cond = vim.fn.executable 'make' == 1 },
     {
         'ThePrimeagen/harpoon',
         config = function ()

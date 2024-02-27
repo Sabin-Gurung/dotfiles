@@ -1,7 +1,6 @@
 vim.cmd [[
 nnoremap <leader>gs :Git<CR>
 nnoremap <leader>ga :Git blame<CR>
-nnoremap <leader>ou :UndotreeToggle<CR>
 augroup MY_AU_GROUP
     autocmd!
     autocmd filetype python nnoremap <buffer> <localleader>ef :sp term://python3 %<CR>
