@@ -11,13 +11,3 @@ let g:conjure#mapping#def_word = v:false
 let g:conjure#client#clojure#nrepl#mapping#refresh_changed = v:false
 let g:conjure#client#clojure#nrepl#connection#auto_repl#enabled = v:false
 ]]
-
-vim.g.undotree_SetFocusWhenToggle=1
-require('lualine').setup {
-    options = {
-        icons_enabled = false,
-        component_separators = '|',
-        section_separators = '',
-    },
-}
-

@@ -17,7 +17,6 @@ require('lazy').setup({
     'tpope/vim-repeat',
     'tpope/vim-fugitive',
     'jiangmiao/auto-pairs',
-    'nvim-lualine/lualine.nvim',
     'mhinz/vim-startify',
     {
         'neovim/nvim-lspconfig',
@@ -33,7 +32,13 @@ require('lazy').setup({
         'saadparwaiz1/cmp_luasnip',
         'L3MON4D3/LuaSnip',
     },
-    {'mbbill/undotree', keys = { { "<leader>ou", "<cmd>UndotreeToggle<cr>", desc = "Undotree" } } },
+    {
+        'mbbill/undotree',
+        keys = { { "<leader>ou", "<cmd>UndotreeToggle<cr>", desc = "Undotree" } },
+        config = function ()
+            vim.g.undotree_SetFocusWhenToggle=1
+        end
+    },
     { 'morhetz/gruvbox', config = function () vim.cmd[[colorscheme gruvbox]] end },
     { "AckslD/nvim-neoclip.lua", config = function() require('neoclip').setup{ default_register = '*', on_select = { move_to_front = true}} end },
     { 'Olical/conjure' , ft = 'clojure' },
@@ -67,5 +72,16 @@ require('lazy').setup({
             vim.g.NERDTreeWinSize=40
         end
     },
+    {
+        'nvim-lualine/lualine.nvim',
+        opts = {
+            options = {
+                icons_enabled = false,
+                component_separators = '|',
+                section_separators = '',
+            },
+        }
+    }
+
 })
 
