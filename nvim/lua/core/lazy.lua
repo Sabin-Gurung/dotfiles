@@ -42,7 +42,7 @@ require('lazy').setup({
         dependencies = {
             'nvim-lua/plenary.nvim',
             "nvim-telescope/telescope-file-browser.nvim",
-            { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 },
+            { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', cond = vim.fn.executable 'make' == 1 },
         }
     },
     {
@@ -50,12 +50,13 @@ require('lazy').setup({
         config = function ()
             local harpoon_mark = require("harpoon.mark")
             local harpoon_ui = require("harpoon.ui")
+            local harpoon_term = require("harpoon.term")
             vim.keymap.set('n', '<leader>ha', function () harpoon_mark.add_file() end, {desc = 'Harpoon add'})
             vim.keymap.set('n', '<leader>ho', function () harpoon_ui.toggle_quick_menu() end, {desc = 'Harpoon list'})
+            vim.keymap.set('n', '<leader>ht', function () harpoon_term.gotoTerminal(1) end, {desc = 'Harpoon terminal'})
         end
     },
     {
-        enabled = false,
         'scrooloose/nerdtree',
         config = function ()
             local function nerd_tree_toggle()
@@ -66,17 +67,6 @@ require('lazy').setup({
             vim.cmd [[ nnoremap <leader>fl :NERDTreeFind<CR> ]]
             vim.g.NERDTreeMinimalUI=1
             vim.g.NERDTreeWinSize=40
-        end
-    },
-    {
-        'ms-jpq/chadtree',
-        keys = {
-            { "<leader>ft", "<cmd>CHADopen<cr>", desc = "CHAD Tree" },
-        },
-        config = function ()
-            local chadtree_settings = { theme = { icon_glyph_set = "ascii", text_colour_set = "nord" } }
-            vim.api.nvim_set_var("chadtree_settings", chadtree_settings)
-            -- vim.cmd [[ nnoremap <leader>ft :CHADopen<CR> ]]
         end
     },
 })

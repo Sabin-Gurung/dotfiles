@@ -6,6 +6,8 @@ alias ...="cd ../.."
 alias cpd='cd $(fd .git$ -t d -H ~/workspace | sed -e "s/.git\\///g" | fzf --height 45% --reverse)'
 
 alias v="nvim"
+alias vim="nvim"
+alias vi="nvim"
 alias vc="cd ~/.config/nvim/ && nvim"
 alias vd="cd ~/dotfiles/ && nvim"
 alias vpd='cpd && nvim'

@@ -76,5 +76,5 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- ====== packages ==============
-require("core.plugins")
+require("core.lazy")
 
