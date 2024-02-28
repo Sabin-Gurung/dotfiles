@@ -52,7 +52,7 @@ vim.keymap.set('n', '<leader>gb', builtin.git_branches, { desc = 'telescope git 
 vim.keymap.set('n', '<leader>gh', builtin.git_bcommits, {desc = 'telescope git commits'})
 vim.keymap.set('n', '<leader>p', telescope.extensions.neoclip.default, {desc = 'telescope neoclip'})
 
-pcall(require('telescope').load_extension,'fzf')
+require('telescope').load_extension('fzf')
 require("telescope").load_extension "file_browser"
 
 vim.api.nvim_create_user_command("TelescopeProjects", function()

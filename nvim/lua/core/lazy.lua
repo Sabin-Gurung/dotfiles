@@ -44,19 +44,21 @@ require('lazy').setup({
     { 'Olical/conjure' , ft = 'clojure' },
     {
         'nvim-telescope/telescope.nvim', branch = '0.1.x',
-        dependencies = { 'nvim-lua/plenary.nvim', }
+        dependencies = {
+            'nvim-lua/plenary.nvim',
+            "nvim-telescope/telescope-file-browser.nvim",
+            { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', cond = function() return vim.fn.executable 'make' == 1 end },
+        }
     },
-    "nvim-telescope/telescope-file-browser.nvim",
-    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', cond = vim.fn.executable 'make' == 1 },
     {
         'ThePrimeagen/harpoon',
         config = function ()
             local harpoon_mark = require("harpoon.mark")
             local harpoon_ui = require("harpoon.ui")
-            local harpoon_term = require("harpoon.term")
+            -- local harpoon_term = require("harpoon.term")
             vim.keymap.set('n', '<leader>ha', function () harpoon_mark.add_file() end, {desc = 'Harpoon add'})
             vim.keymap.set('n', '<leader>ho', function () harpoon_ui.toggle_quick_menu() end, {desc = 'Harpoon list'})
-            vim.keymap.set('n', '<leader>ht', function () harpoon_term.gotoTerminal(1) end, {desc = 'Harpoon terminal'})
+            -- vim.keymap.set('n', '<leader>ht', function () harpoon_term.gotoTerminal(1) end, {desc = 'Harpoon terminal'})
         end
     },
     {
