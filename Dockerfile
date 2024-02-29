@@ -31,5 +31,9 @@ RUN apk --no-cache add \
 # Copy the kickstart.nvim init.lua
 COPY ./nvim/init.lua /root/.config/nvim/init.lua
 ADD ./nvim/after /root/.config/nvim/after
+ADD ./nvim/lua /root/.config/nvim/lua
+
+# docker build -t my-nvim .
+# docker run -it --rm --name dev my-nvim
 
 WORKDIR /neovim
