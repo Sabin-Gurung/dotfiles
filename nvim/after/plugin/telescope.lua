@@ -11,6 +11,9 @@ telescope.setup{
         layout_config = { prompt_position = "top" }
     },
     pickers = {
+        colorscheme  = {
+            enable_preview = true
+        },
         find_files = file_opts,
         git_files = file_opts,
         buffers = {

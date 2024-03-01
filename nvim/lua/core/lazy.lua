@@ -20,17 +20,21 @@ require('lazy').setup({
     'mhinz/vim-startify',
     {
         'neovim/nvim-lspconfig',
-        'williamboman/mason.nvim',
-        'williamboman/mason-lspconfig.nvim',
-        'folke/neodev.nvim',
+        dependencies = {
+            'williamboman/mason.nvim',
+            'williamboman/mason-lspconfig.nvim',
+            'folke/neodev.nvim',
+        }
     },
     {
         'hrsh7th/nvim-cmp',
-        'hrsh7th/cmp-buffer',
-        'hrsh7th/cmp-path',
-        'hrsh7th/cmp-nvim-lsp',
-        'saadparwaiz1/cmp_luasnip',
-        'L3MON4D3/LuaSnip',
+        dependencies = {
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-path',
+            'hrsh7th/cmp-nvim-lsp',
+            'saadparwaiz1/cmp_luasnip',
+            'L3MON4D3/LuaSnip',
+        }
     },
     {
         'mbbill/undotree',
@@ -39,7 +43,7 @@ require('lazy').setup({
             vim.g.undotree_SetFocusWhenToggle=1
         end
     },
-    { 'morhetz/gruvbox', config = function () vim.cmd[[colorscheme gruvbox]] end },
+    { 'morhetz/gruvbox', lazy = false, priority = 1000, config = function () vim.cmd[[colorscheme gruvbox]] end },
     { "AckslD/nvim-neoclip.lua", config = function() require('neoclip').setup{ default_register = '*', on_select = { move_to_front = true}} end },
     { 'Olical/conjure' , ft = 'clojure' },
     {
@@ -55,10 +59,8 @@ require('lazy').setup({
         config = function ()
             local harpoon_mark = require("harpoon.mark")
             local harpoon_ui = require("harpoon.ui")
-            -- local harpoon_term = require("harpoon.term")
             vim.keymap.set('n', '<leader>ha', function () harpoon_mark.add_file() end, {desc = 'Harpoon add'})
             vim.keymap.set('n', '<leader>ho', function () harpoon_ui.toggle_quick_menu() end, {desc = 'Harpoon list'})
-            -- vim.keymap.set('n', '<leader>ht', function () harpoon_term.gotoTerminal(1) end, {desc = 'Harpoon terminal'})
         end
     },
     {
