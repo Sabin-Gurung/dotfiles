@@ -16,7 +16,7 @@ require('lazy').setup({
     'tpope/vim-commentary',
     'tpope/vim-repeat',
     'tpope/vim-fugitive',
-    'jiangmiao/auto-pairs',
+    { 'windwp/nvim-autopairs', event = "InsertEnter", config = true, enabled = true },
     'mhinz/vim-startify',
     {
         'neovim/nvim-lspconfig',
@@ -102,7 +102,10 @@ require('lazy').setup({
             { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
             { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
         },
+    },
+    {
+        'stevearc/oil.nvim',
+        opts = {},
     }
-
 })
 
