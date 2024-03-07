@@ -65,13 +65,17 @@ require('lazy').setup({
     },
     {
         'scrooloose/nerdtree',
+        keys = {
+            { "<leader>fl", "<cmd>NERDTreeFind<cr>", desc = "NERDTree find" },
+            { "<leader>ft", "<cmd>NERDTreeToggle<cr>", desc = "NERDTree toggle" }
+        },
         config = function ()
-            local function nerd_tree_toggle()
-                vim.cmd[[NERDTreeToggle
-                silent NERDTreeMirror]]
-            end
-            vim.keymap.set('n', '<leader>ft', nerd_tree_toggle, {desc = "nerd_tree_toggle"})
-            vim.cmd [[ nnoremap <leader>fl :NERDTreeFind<CR> ]]
+            -- local function nerd_tree_toggle()
+            --     vim.cmd[[NERDTreeToggle
+            --     silent NERDTreeMirror]]
+            -- end
+            -- vim.keymap.set('n', '<leader>ft', nerd_tree_toggle, {desc = "nerd_tree_toggle"})
+            -- vim.cmd [[ nnoremap <leader>fl :NERDTreeFind<CR> ]]
             vim.g.NERDTreeMinimalUI=1
             vim.g.NERDTreeWinSize=40
         end
