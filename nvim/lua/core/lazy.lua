@@ -39,9 +39,7 @@ require('lazy').setup({
     {
         'mbbill/undotree',
         keys = { { "<leader>ou", "<cmd>UndotreeToggle<cr>", desc = "Undotree" } },
-        config = function ()
-            vim.g.undotree_SetFocusWhenToggle=1
-        end
+        config = function () vim.g.undotree_SetFocusWhenToggle=1 end
     },
     { 'morhetz/gruvbox', lazy = false, priority = 1000, config = function () vim.cmd[[colorscheme gruvbox]] end },
     { "AckslD/nvim-neoclip.lua", config = function() require('neoclip').setup{ default_register = '*', on_select = { move_to_front = true}} end },
@@ -74,8 +72,6 @@ require('lazy').setup({
             --     vim.cmd[[NERDTreeToggle
             --     silent NERDTreeMirror]]
             -- end
-            -- vim.keymap.set('n', '<leader>ft', nerd_tree_toggle, {desc = "nerd_tree_toggle"})
-            -- vim.cmd [[ nnoremap <leader>fl :NERDTreeFind<CR> ]]
             vim.g.NERDTreeMinimalUI=1
             vim.g.NERDTreeWinSize=40
         end
