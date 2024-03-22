@@ -31,10 +31,6 @@ tnoremap jk <c-\><c-n>
 nnoremap Q @q
 nnoremap Y y$
 nnoremap <silent> <C-]> :e #<CR>
-nnoremap <leader>wh :wincmd h<CR>
-nnoremap <leader>wj :wincmd j<CR>
-nnoremap <leader>wk :wincmd k<CR>
-nnoremap <leader>wl :wincmd l<CR>
 vnoremap * y/\V<C-R>=escape(@",'/\')<CR><CR>
 nnoremap [q :cprev <CR>
 nnoremap ]q :cnext <CR>
@@ -48,11 +44,14 @@ nnoremap <leader>oq :copen <CR>
 nnoremap <leader>sr :%s//
 xnoremap <leader>sr :s//
 nnoremap <leader>sn :nohl<CR>
-nnoremap <leader>ww :wincmd w<CR>
 nnoremap <leader>wv :wincmd v<CR>
 nnoremap <leader>ws :wincmd s<CR>
 nnoremap <leader>wo :wincmd o<CR>
 nnoremap <leader>wq :wincmd q<CR>
+nnoremap <leader>w<Left> :vertical resize +7<CR>
+nnoremap <leader>w<Right> :vertical resize -7<CR>
+nnoremap <leader>w<Up> :resize +7<CR>
+nnoremap <leader>w<Down> :resize -7<CR>
 nnoremap <leader>qq :qall<CR>
 nnoremap <leader>qQ :qall!<CR>
 nnoremap <leader>bD :bufdo bd<CR>
@@ -61,11 +60,7 @@ nnoremap <leader>' :12sp term://zsh<CR>
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
-command! VimSource execute "source ~/.config/nvim/init.lua"
-command! VimConfig execute "e ~/.config/nvim/init.lua"
 command! -range=% IndentJson :<line1>,<line2>!python3 -m json.tool
-nnoremap <leader>vrc :VimConfig<CR>
-nnoremap <leader>vrs :VimSource<CR>
 ]]
 
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })

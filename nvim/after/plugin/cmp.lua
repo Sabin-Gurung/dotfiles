@@ -27,10 +27,18 @@ cmp.setup {
         end, { 'i', 's' }),
     },
     sources = {
-        { name = 'nvim_lsp', keyword_length = 3 },
+        { name = 'nvim_lsp', keyword_length = 1 },
         { name = 'luasnip' },
         { name = 'path' },
-        { name = 'buffer', keyword_length = 3 },
+        {
+            name = 'buffer',
+            keyword_length = 3,
+            option = {
+                get_bufnrs = function()
+                    return vim.api.nvim_list_bufs()
+                end
+            }
+        },
     },
 }
 

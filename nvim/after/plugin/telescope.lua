@@ -54,6 +54,7 @@ vim.keymap.set('n', 'z=', builtin.spell_suggest, {desc = 'telescope spell sugges
 vim.keymap.set('n', '<leader>gb', builtin.git_branches, { desc = 'telescope git branches' })
 vim.keymap.set('n', '<leader>gh', builtin.git_bcommits, {desc = 'telescope git commits'})
 vim.keymap.set('n', '<leader>p', telescope.extensions.neoclip.default, {desc = 'telescope neoclip'})
+vim.keymap.set('n', '<leader>vrc', function () builtin.git_files { cwd = "~/dotfiles/", prompt_prefix = "Dotfiles > " } end, {desc = 'Nvim config'})
 
 require('telescope').load_extension('fzf')
 require("telescope").load_extension "file_browser"

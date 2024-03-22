@@ -106,6 +106,7 @@ require('lazy').setup({
     {
         'stevearc/oil.nvim',
         opts = {},
+        cmd = "Oil",
     }
 })
 
