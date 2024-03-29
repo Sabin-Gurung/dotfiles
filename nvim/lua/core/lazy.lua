@@ -16,6 +16,7 @@ require('lazy').setup({
     'tpope/vim-commentary',
     'tpope/vim-repeat',
     'tpope/vim-fugitive',
+    'sindrets/diffview.nvim',
     { 'windwp/nvim-autopairs', event = "InsertEnter", config = true, enabled = true },
     'mhinz/vim-startify',
     {
@@ -41,7 +42,7 @@ require('lazy').setup({
         keys = { { "<leader>ou", "<cmd>UndotreeToggle<cr>", desc = "Undotree" } },
         config = function () vim.g.undotree_SetFocusWhenToggle=1 end
     },
-    { 'morhetz/gruvbox', lazy = false, priority = 1000, config = function () vim.cmd[[colorscheme gruvbox]] end },
+    { 'ellisonleao/gruvbox.nvim', lazy = false, priority = 1000, config = function () vim.cmd[[colorscheme gruvbox]] end },
     { "AckslD/nvim-neoclip.lua", config = function() require('neoclip').setup{ default_register = '*', on_select = { move_to_front = true}} end },
     { 'Olical/conjure' , ft = 'clojure' },
     {
