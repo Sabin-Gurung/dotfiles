@@ -1,4 +1,5 @@
 export FZF_DEFAULT_COMMAND='fd -t f --color=never'
+export EDITOR='nvim'
 
 alias cls="clear"
 alias ..="cd .."
