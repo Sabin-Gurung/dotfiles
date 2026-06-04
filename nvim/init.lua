@@ -26,7 +26,7 @@ nohl
 syntax on
 let mapleader = " "
 let maplocalleader = ","
-imap jk <Esc>
+imap <C-J> <Esc>
 tnoremap jk <c-\><c-n>
 nnoremap Q @q
 nnoremap Y y$
