@@ -11,7 +11,7 @@ set textobj-entire
 set exchange
 
 let mapleader = " "
-imap jk <Esc>
+imap <c-J> <Esc>
 nnoremap Q @q
 nnoremap <c-]> :e #<cr>
 nnoremap Y y$
