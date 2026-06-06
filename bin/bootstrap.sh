@@ -1,14 +1,16 @@
 #!/usr/bin/env bash
-set -e
 
-# tmux plugins
-git clone https://github.com/tmux-plugins/tpm \
-  ~/.tmux/plugins/tpm || true
+# .config links
+# ln -s ~/dotfiles/nvim/after ~/.config/nvim/after
+# ln -s ~/dotfiles/nvim/lua ~/.config/nvim/lua
+# ln -s ~/dotfiles/nvim/init.lua ~/.config/nvim/init.lua
+# ln -s ~/dotfiles/ideavimrc ~/.ideavimrc
+# ln -s ~/dotfiles/vimrc ~/.vimrc
+#
+# ln -s ~/dotfiles/lf ~/.config/lf
+# ln -s ~/dotfiles/yazi/keymap.toml ~/.config/yazi/keymap.toml
+# ln -s ~/dotfiles/yazi/theme.toml ~/.config/yazi/theme.toml
+# ln -s ~/dotfiles/yazi/yazi.toml ~/.config/yazi/yazi.toml
 
-ln -s ~/dotfiles/nvim ~/.config/nvim
-ln -s ~/dotfiles/lf ~/.config/lf
-ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
-ln -s ~/dotfiles/ideavimrc ~/.ideavimrc
-
-# neovim plugins
-nvim --headless "+Lazy! sync" +qa || true
+# git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+# ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
