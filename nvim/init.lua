@@ -56,7 +56,6 @@ nnoremap <leader>qq :qall<CR>
 nnoremap <leader>qQ :qall!<CR>
 nnoremap <leader>bD :bufdo bd<CR>
 nnoremap <leader>bd :bd!<CR>
-nnoremap <leader>' :12sp term://zsh<CR>
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 

@@ -55,7 +55,7 @@ nnoremap <leader>qq :qall<CR>
 nnoremap <leader>qQ :qall!<CR>
 nnoremap <leader>bD :bufdo bd<CR>
 nnoremap <leader>bd :bd!<CR>
-nnoremap <leader>' :12sp term://zsh<CR>
+" nnoremap <leader>' :12sp term://zsh<CR>
 
 command! -range=% IndentJson :<line1>,<line2>!python3 -m json.tool
 command! Todo belowright split ~/tools/todo/todo.todo <bar> :resize 10 <cr>
