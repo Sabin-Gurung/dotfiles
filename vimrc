@@ -26,8 +26,8 @@ command! VimConfig execute "e ~/.vimrc"
 
 let mapleader = " "
 let maplocalleader = ","
-imap jk <Esc>
-tnoremap jk <c-\><c-n>
+imap <C-J> <Esc>
+tnoremap <C-J> <c-\><c-n>
 nnoremap Q @q
 nnoremap Y y$
 nnoremap <silent> <C-]> :e #<CR>
@@ -95,7 +95,7 @@ colorscheme gruvbox
 " highlight Normal     ctermbg=NONE guibg=NONE
 " hsghlight LineNr     ctermbg=NONE guibg=NONE
 " highlight SignColumn ctermbg=NONE guibg=NONE
-highlight WinSeparator guifg=NONE 
+highlight WinSeparator guifg=NONE
 
 let g:highlightedyank_highlight_duration = 200
 let g:undotree_SetFocusWhenToggle=1
@@ -142,8 +142,8 @@ vim.api.nvim_create_user_command("TelescopeProjects", function()
     builtin.find_files({find_command={"fd", ".git$", "-t", "d", "-H", "/Users/sabingurung/workspace", "|", "echo", "hello"},
     prompt_prefix = "Projects > ",
     attach_mappings = function (prompt_buffer, map)
-        actions.select_default:replace(function() 
-            local text = action_state.get_selected_entry()[1]:gsub(".git", "") 
+        actions.select_default:replace(function()
+            local text = action_state.get_selected_entry()[1]:gsub(".git", "")
             actions.close(prompt_buffer)
             vim.cmd("cd " .. text)
             builtin.git_files()
@@ -180,12 +180,12 @@ nnoremap <leader>ga :Git blame<CR>
 nnoremap <leader>gb <cmd>Telescope git_branches<cr>
 nnoremap <leader>gh <cmd>Telescope git_bcommits<cr>
 
-augroup MY_AU_GROUP 
+augroup MY_AU_GROUP
     autocmd!
     autocmd filetype python nnoremap <buffer> <localleader>ef :sp term://python3 %<CR>
     autocmd filetype lua nnoremap <buffer> <localleader>ef :luafile %<CR>
     autocmd filetype TelescopePrompt let b:autopairs_enabled = 0
-augroup END 
+augroup END
 
 nnoremap <silent> <localleader>K :call ShowDocumentation()<CR>
 nmap <silent> <localleader>gd <Plug>(coc-definition)

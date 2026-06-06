@@ -6,6 +6,7 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias cpd='cd $(fd .git$ -t d -H ~/workspace | sed -e "s/.git\\///g" | fzf --height 45% --reverse)'
 
+alias lf="yazi"
 alias v="nvim"
 alias vim="nvim"
 alias vi="nvim"
@@ -24,3 +25,7 @@ gc() {
 }
 
 alias cow="fortune | cowsay"
+
+alias dockx='docker stop $(docker ps -q)'
+alias dockr='docker-compose restart'
+
