@@ -27,7 +27,7 @@ syntax on
 let mapleader = " "
 let maplocalleader = ","
 imap <C-J> <Esc>
-tnoremap jk <c-\><c-n>
+tnoremap <c-\><c-\> <c-\><c-n>
 nnoremap Q @q
 nnoremap Y y$
 nnoremap <silent> <C-]> :e #<CR>
@@ -61,6 +61,8 @@ vnoremap K :m '<-2<CR>gv=gv
 
 command! -range=% IndentJson :<line1>,<line2>!python3 -m json.tool
 ]]
+
+-- tnoremap jk <c-\><c-n>
 
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
