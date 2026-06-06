@@ -27,7 +27,7 @@ syntax on
 let mapleader = " "
 let maplocalleader = ","
 imap <C-J> <Esc>
-tnoremap <C-J> <c-\><c-n>
+tnoremap jk <c-\><c-n>
 nnoremap Q @q
 nnoremap Y y$
 nnoremap <silent> <C-]> :e #<CR>

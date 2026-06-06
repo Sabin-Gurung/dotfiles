@@ -9,6 +9,8 @@ TOOLS=(
   # fzf
   # node
   # python3
+  # yazi
+  # lf
 )
 
 install_mac() {
