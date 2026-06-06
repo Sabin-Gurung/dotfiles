@@ -73,3 +73,45 @@ vim.api.nvim_create_user_command("TelescopeProjects", function()
     end})
 end, {})
 
+local function save_current_buffer_via_yazi()
+  local target_buf = vim.api.nvim_get_current_buf()
+
+  require("yazi").yazi({
+    open_file_function = function(chosen_path)
+      if not chosen_path then return end
+
+      if vim.fn.isdirectory(chosen_path) == 1 then
+        local path_prefix = chosen_path:gsub("/$", "") .. "/"
+
+        vim.ui.input({
+          prompt = "Save to path: ",
+          default = path_prefix,
+        }, function(input_path)
+          if not input_path or input_path == "" or input_path == path_prefix then
+            return
+          end
+
+          -- Extract the directory portion of whatever the user typed
+          -- (e.g., /path/to/chosen/new_folder/filename.txt -> /path/to/chosen/new_folder)
+          local target_dir = vim.fn.fnamemodify(input_path, ":h")
+
+          -- Ensure the directory structure exists before writing
+          if vim.fn.isdirectory(target_dir) == 0 then
+            vim.fn.mkdir(target_dir, "p")
+          end
+
+          vim.api.nvim_buf_call(target_buf, function()
+            vim.cmd("write " .. vim.fn.fnameescape(input_path))
+          end)
+        end)
+      else
+        -- If you selected an actual file in Yazi, overwrite it directly
+        vim.api.nvim_buf_call(target_buf, function()
+          vim.cmd("write " .. vim.fn.fnameescape(chosen_path))
+        end)
+      end
+    end
+  })
+end
+
+vim.keymap.set("n", "<leader>sw", save_current_buffer_via_yazi, { desc = "Save Buffer As via Yazi" })

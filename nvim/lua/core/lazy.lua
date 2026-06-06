@@ -108,6 +108,14 @@ require('lazy').setup({
         'stevearc/oil.nvim',
         opts = {},
         cmd = "Oil",
+    },
+    {
+        "mikavilpas/yazi.nvim",
+        version = "*", -- use the latest stable version
+        -- event = "VeryLazy",
+        dependencies = {
+            { "nvim-lua/plenary.nvim", lazy = true },
+        }
     }
 
 })
