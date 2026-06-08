@@ -14,31 +14,32 @@ run = "plugin bookmarks delete_all"
 desc = "Delete all bookmarks"
 
 [[mgr.prepend_keymap]]
-on = [ "S-m", "s" ]
+on = [ "<", "s" ]
 run = "linemode size"
 desc = "Linemode: size"
 
 [[mgr.prepend_keymap]]
-on = [ "S-m", "p" ]
+on = [ "<", "p" ]
 run = "linemode permissions"
 desc = "Linemode: permissions"
 
 [[mgr.prepend_keymap]]
-on = [ "S-m", "b" ]
+on = [ "<", "b" ]
 run = "linemode btime"
 desc = "Linemode: btime"
 
 [[mgr.prepend_keymap]]
-on = [ "S-m", "m" ]
+on = [ "<", "m" ]
 run = "linemode mtime"
 desc = "Linemode: mtime"
 
 [[mgr.prepend_keymap]]
-on = [ "S-m", "o" ]
+on = [ "<", "o" ]
 run = "linemode owner"
 desc = "Linemode: owner"
 
 [[mgr.prepend_keymap]]
-on = [ "S-m", "n" ]
+on = [ "<", "n" ]
 run = "linemode none"
 desc = "Linemode: none"
+
