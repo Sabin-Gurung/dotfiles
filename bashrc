@@ -39,4 +39,32 @@ alias dockr='docker-compose restart'
 alias 7unzip='7zz x'
 alias 7peek='7zz l'
 
+alias veracrypt='/Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt --text'
+alias vopen='veracrypt --mount ~/vault.vc ~/vault-open --keyfiles=\"\" --pim 0'
+alias vclose='veracrypt --dismount ~/vault-open'
+alias lock='veracrypt --dismount --all'
+# alias lock='veracrypt --dismount --all && pmset displaysleepnow'
+#
+# mkdir -p ~/vault-open
 
+# veracrypt --create ~/vault.vc \
+#   --size 100G \
+#   --encryption AES \
+#   --hash SHA-512 \
+#   --volume-type normal \
+#   --filesystem exfat \
+#   --pim 0 \
+#   --keyfiles="" \
+#   --random-source /dev/urandom \
+#   --dynamic
+
+# veracrypt --create ~/vault/personal-vault.vc \
+#   --size 100G \
+#   --encryption AES \
+#   --hash SHA-512 \
+#   --volume-type normal \
+#   --filesystem exfat \
+#   --pim 0 \
+#   --keyfiles="" \
+#   --random-source /dev/urandom \
+#   --dynamic
