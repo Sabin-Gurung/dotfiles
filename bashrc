@@ -29,3 +29,14 @@ alias cow="fortune | cowsay"
 alias dockx='docker stop $(docker ps -q)'
 alias dockr='docker-compose restart'
 
+# 7-zip
+7zip() {
+    7zz a "$1.7z" "${@:2}"
+}
+7zipmax() {
+    7zz a -t7z -mx=9 -p -mhe=on "$1.7z" "${@:2}"
+}
+alias 7unzip='7zz x'
+alias 7peek='7zz l'
+
+
