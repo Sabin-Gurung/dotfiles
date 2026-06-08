@@ -11,6 +11,8 @@
 # ln -s ~/dotfiles/yazi/keymap.toml ~/.config/yazi/keymap.toml
 # ln -s ~/dotfiles/yazi/theme.toml ~/.config/yazi/theme.toml
 # ln -s ~/dotfiles/yazi/yazi.toml ~/.config/yazi/yazi.toml
+# ln -s ~/dotfiles/yazi/package.toml ~/.config/yazi/package.toml
+# ln -s ~/dotfiles/yazi/plugins/7z ~/.config/yazi/plugins/7z
 
 # git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
