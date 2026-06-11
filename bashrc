@@ -1,4 +1,5 @@
-export FZF_DEFAULT_COMMAND='fd -t f --color=never'
+# export FZF_DEFAULT_COMMAND='fd -t f --color=never'
+export FZF_DEFAULT_COMMAND='fd -t f --follow'
 export EDITOR='nvim'
 
 alias cls="clear"
@@ -6,7 +7,6 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias cpd='cd $(fd .git$ -t d -H ~/workspace | sed -e "s/.git\\///g" | fzf --height 45% --reverse)'
 
-alias lf="yazi"
 alias v="nvim"
 alias vim="nvim"
 alias vi="nvim"
@@ -71,4 +71,4 @@ alias lock='veracrypt --dismount --all'
 #   --dynamic
 
 
-export PATH="$PATH:$HOME/dotfiles/scripts"
+export PATH="$PATH:$HOME/dotfiles/bin"
