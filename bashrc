@@ -13,6 +13,7 @@ alias vi="nvim"
 alias vc="cd ~/.config/nvim/ && nvim"
 alias vd="cd ~/dotfiles/ && nvim"
 alias vpd='cpd && nvim'
+alias cdgd='cd ~/Downloads/'
 
 alias lgs="lazygit"
 alias gs="git status"
@@ -68,3 +69,6 @@ alias lock='veracrypt --dismount --all'
 #   --keyfiles="" \
 #   --random-source /dev/urandom \
 #   --dynamic
+
+
+export PATH="$PATH:$HOME/dotfiles/scripts"

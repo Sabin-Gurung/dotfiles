@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 # .config links
-# ln -s ~/dotfiles/nvim/after ~/.config/nvim/after
-# ln -s ~/dotfiles/nvim/lua ~/.config/nvim/lua
-# ln -s ~/dotfiles/nvim/init.lua ~/.config/nvim/init.lua
+ln -s ~/dotfiles/nvim/after ~/.config/nvim
+ln -s ~/dotfiles/nvim/lua ~/.config/nvim
+ln -s ~/dotfiles/nvim/init.lua ~/.config/nvim/init.lua
 # ln -s ~/dotfiles/ideavimrc ~/.ideavimrc
 # ln -s ~/dotfiles/vimrc ~/.vimrc
 #
