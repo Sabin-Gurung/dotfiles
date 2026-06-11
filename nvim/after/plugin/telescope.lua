@@ -3,7 +3,7 @@ local actions = require "telescope.actions"
 local builtin = require "telescope.builtin"
 local action_state = require "telescope.actions.state"
 
-local file_opts = {previewer = false, find_command={"rg", "--ignore", "-L", "--hidden", "--files"}}
+local file_opts = {previewer = false, find_command={ 'fd', '--type', 'f', '--follow', '--hidden', '--exclude', '.git' }}
 telescope.setup{
     defaults = {
         layout_strategy = "vertical",
@@ -54,7 +54,18 @@ vim.keymap.set('n', 'z=', builtin.spell_suggest, {desc = 'telescope spell sugges
 vim.keymap.set('n', '<leader>gb', builtin.git_branches, { desc = 'telescope git branches' })
 vim.keymap.set('n', '<leader>gh', builtin.git_bcommits, {desc = 'telescope git commits'})
 vim.keymap.set('n', '<leader>p', telescope.extensions.neoclip.default, {desc = 'telescope neoclip'})
-vim.keymap.set('n', '<leader>vrc', function () builtin.git_files { cwd = "~/dotfiles/", prompt_prefix = "Dotfiles > " } end, {desc = 'Nvim config'})
+
+vim.keymap.set('n', '<leader>vrc', function()
+  local found = vim.fn.systemlist(
+    'fd . -t f --follow --hidden --exclude .git ' .. vim.fn.expand('~/.config_user/')
+  )
+
+  require('telescope.builtin').find_files {
+    prompt_title = 'Vrc > ',
+    finder = require('telescope.finders').new_table { results = found },
+    sorter = require('telescope.config').values.generic_sorter {},
+  }
+end, { desc = 'Nvim config' })
 
 require('telescope').load_extension('fzf')
 require("telescope").load_extension "file_browser"
