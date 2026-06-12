@@ -6,14 +6,18 @@ export EDITOR='nvim'
 alias cls="clear"
 alias ..="cd .."
 alias ...="cd ../.."
-alias cpd='cd $(fd .git$ -t d -H ~/workspace | sed -e "s/.git\\///g" | fzf --height 45% --reverse)'
+
+alias cpd='cd $(ls -d $HOME/workspace/wallapop*/* $HOME/workspace/personal_code/* | \
+sed "s|$HOME|~|g" | \
+fzf | \
+sed "s|~|$HOME|g"
+)'
 
 alias v="nvim"
 alias vim="nvim"
 alias vi="nvim"
-alias vc="cd ~/.config/nvim/ && nvim"
 alias vd="cd ~/dotfiles/ && nvim"
-alias vpd='cpd && nvim'
+alias vpd='cpd && cde'
 alias cdgd='cd ~/Downloads/'
 
 alias lgs="lazygit"

@@ -13,7 +13,7 @@ tmux split-window -h -t "$left_pane" -c "$PWD" -l 70
 right_pane="${window_id}.2"
 
 # run gemini on right
-tmux send-keys -t "$right_pane" "gemini" Enter
+tmux send-keys -t "$right_pane" "opencode" Enter
 
 # split LEFT pane horizontally (bottom 20%)
 tmux split-window -v -t "$left_pane" -c "$PWD" -l 15
