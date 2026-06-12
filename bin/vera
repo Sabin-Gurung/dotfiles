@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -e
+
+CONTAINER="$HOME/vaults/takara.hc"
+MOUNT_POINT="$HOME/vaults/mounts/takara/"
+
+case "${1:-}" in
+  mount)
+    PASSWORD=$(op read "op://Private/Takara Vault/password")
+    veracrypt --text --non-interactive -p "$PASSWORD" --mount "$CONTAINER" "$MOUNT_POINT"
+    ;;
+  unmount|umount)
+    veracrypt --text --non-interactive --dismount "$MOUNT_POINT"
+    ;;
+  *)
+    echo "Usage: $0 {mount|unmount}" >&2
+    exit 1
+    ;;
+esac

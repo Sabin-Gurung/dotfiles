@@ -1,5 +1,6 @@
 # export FZF_DEFAULT_COMMAND='fd -t f --color=never'
 export FZF_DEFAULT_COMMAND='fd -t f --follow'
+export PATH="$PATH:$HOME/dotfiles/bin"
 export EDITOR='nvim'
 
 alias cls="clear"
@@ -40,10 +41,11 @@ alias dockr='docker-compose restart'
 alias 7unzip='7zz x'
 alias 7peek='7zz l'
 
-alias veracrypt='/Applications/VeraCrypt.app/Contents/MacOS/VeraCrypt --text'
-alias vopen='veracrypt --mount ~/vault.vc ~/vault-open --keyfiles=\"\" --pim 0'
-alias vclose='veracrypt --dismount ~/vault-open'
-alias lock='veracrypt --dismount --all'
+
+alias vopen='vera mount'
+alias vclose='vera unmount'
+
+
 # alias lock='veracrypt --dismount --all && pmset displaysleepnow'
 #
 # mkdir -p ~/vault-open
@@ -71,4 +73,3 @@ alias lock='veracrypt --dismount --all'
 #   --dynamic
 
 
-export PATH="$PATH:$HOME/dotfiles/bin"
