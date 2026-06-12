@@ -43,3 +43,8 @@ on = [ "<", "n" ]
 run = "linemode none"
 desc = "Linemode: none"
 
+[[mgr.prepend_keymap]]
+on = [ "g", "w" ]
+run = "cd ~/workspace/"
+desc = "Go to workspace"
+
