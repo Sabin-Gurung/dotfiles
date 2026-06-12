@@ -44,6 +44,7 @@ alias 7peek='7zz l'
 
 alias vopen='vera mount'
 alias vclose='vera unmount'
+alias vlist='veracrypt --text --list'
 
 
 # alias lock='veracrypt --dismount --all && pmset displaysleepnow'

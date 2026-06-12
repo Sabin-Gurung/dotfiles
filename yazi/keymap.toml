@@ -48,3 +48,12 @@ on = [ "g", "w" ]
 run = "cd ~/workspace/"
 desc = "Go to workspace"
 
+[[mgr.prepend_keymap]]
+on = [ "g", "v" ]
+run = "cd ~/vaults/mounts/"
+desc = "Go to vaults"
+
+[[mgr.prepend_keymap]]
+on = [ "g", "V" ]
+run = "cd /Volumes/"
+desc = "Go to Volumes"
