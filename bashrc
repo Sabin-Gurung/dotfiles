@@ -21,6 +21,7 @@ alias vpd='cpd && cde'
 alias cdgd='cd ~/Downloads/'
 
 alias lgs="lazygit"
+alias lgd="lazydocker"
 alias gs="git status"
 alias gbd="git branch | grep -E -v 'master|main' | xargs git branch -D"
 alias gp="git push"
