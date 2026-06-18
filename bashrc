@@ -18,7 +18,9 @@ alias vim="nvim"
 alias vi="nvim"
 alias vd="cd ~/dotfiles/ && nvim"
 alias vpd='cpd && cde'
-alias cdgd='cd ~/Downloads/'
+alias cdd='cd ~/Downloads/'
+alias cdww='cd ~/workspace/wallapop_code/'
+alias cdwp='cd ~/workspace/personal_code/'
 
 alias lgs="lazygit"
 alias lgd="lazydocker"
@@ -51,31 +53,21 @@ alias vopen='vera mount'
 alias vclose='vera unmount'
 alias vlist='veracrypt --text --list'
 
+repo() {
+  tmp=$(mktemp)
 
-# alias lock='veracrypt --dismount --all && pmset displaysleepnow'
-#
-# mkdir -p ~/vault-open
-
-# veracrypt --create ~/vault.vc \
-#   --size 100G \
-#   --encryption AES \
-#   --hash SHA-512 \
-#   --volume-type normal \
-#   --filesystem exfat \
-#   --pim 0 \
-#   --keyfiles="" \
-#   --random-source /dev/urandom \
-#   --dynamic
-
-# veracrypt --create ~/vault/personal-vault.vc \
-#   --size 100G \
-#   --encryption AES \
-#   --hash SHA-512 \
-#   --volume-type normal \
-#   --filesystem exfat \
-#   --pim 0 \
-#   --keyfiles="" \
-#   --random-source /dev/urandom \
-#   --dynamic
-
+  {
+    gh repo list --limit 1000 --json nameWithOwner,url &
+    gh repo list untitledev-np --limit 1000 --json nameWithOwner,url &
+    # gh repo list Litto-devs-np --limit 1000 --json nameWithOwner,url &
+    # gh repo list Nepikose --limit 1000 --json nameWithOwner,url &
+    gh repo list Wallapop --limit 1000 --json nameWithOwner,url &
+    wait
+  } \
+  | jq -s 'add | unique_by(.nameWithOwner)' \
+  | jq -r '.[] | "\(.nameWithOwner)\t\(.url)"' \
+  | fzf --with-nth=1 \
+  | cut -f2 \
+  | xargs git clone
+}
 

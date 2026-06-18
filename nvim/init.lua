@@ -18,7 +18,7 @@ set noswapfile nobackup nowritebackup
 set pumheight=8
 set scrolloff=5
 set noerrorbells
-set shiftwidth=4 softtabstop=4 expandtab smartindent
+set tabstop=4 shiftwidth=4 softtabstop=4 expandtab smartindent
 set laststatus=3
 highlight WinSeparator guifg=NONE
 autocmd BufWritePre * :%s/\s\+$//e

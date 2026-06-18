@@ -49,7 +49,24 @@ for server, settings in pairs(servers) do
     })
 end
 
--- mason-lspconfig with automatic_enable=true (default) will 
+-- mason-lspconfig with automatic_enable=true (default) will
 -- automatically call vim.lsp.enable(server) for installed servers.
 
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.go",
+  callback = function()
+    vim.lsp.buf.format({ async = false })
+  end,
+})
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "go",
+  callback = function()
+    vim.keymap.set("n", "<leader>ef", function()
+      local height = math.floor(vim.o.lines * 0.3)
+
+      vim.cmd("botright " .. height .. "split | terminal go run %")
+      vim.cmd("startinsert")
+    end, { buffer = true, desc = "Go run current file" })
+  end,
+})
