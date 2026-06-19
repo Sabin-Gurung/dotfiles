@@ -71,11 +71,26 @@ repo() {
     } \
     | jq -s 'add | unique_by(.nameWithOwner)' \
     | jq -r '.[] | "\(.nameWithOwner)\t\(.url)"' \
-    | fzf --with-nth=1
+    | fzf --with-nth=1 --reverse
   )
 
   url=$(printf '%s\n' "$sel" | cut -f2)
   dir=$(basename "$url" .git)
 
   git clone "$url" && cd "$dir"
+}
+
+dsh() {
+    local container
+
+    container=$(
+        docker ps --format '{{.Names}}\t{{.Image}}\t{{.Status}}' |
+        fzf --prompt="Container> " --reverse |
+        cut -f1
+    )
+
+    [ -z "$container" ] && return
+
+    docker exec -it "$container" sh 2>/dev/null ||
+    docker exec -it "$container" bash
 }
