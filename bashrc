@@ -7,11 +7,18 @@ alias cls="clear"
 alias ..="cd .."
 alias ...="cd ../.."
 
-alias cpd='cd $(ls -d $HOME/workspace/wallapop*/* $HOME/workspace/personal_code/* | \
-sed "s|$HOME|~|g" | \
-fzf | \
-sed "s|~|$HOME|g"
-)'
+cpd() {
+  local dir
+
+  dir=$(
+    ls -d "$HOME"/workspace/wallapop*/* "$HOME"/workspace/personal_code/* 2>/dev/null \
+    | sed "s|$HOME|~|g" \
+    | fzf \
+    | sed "s|~|$HOME|g"
+  )
+
+  [ -n "$dir" ] && cd "$dir"
+}
 
 alias v="nvim"
 alias vim="nvim"
@@ -48,26 +55,27 @@ alias dockr='docker-compose restart'
 alias 7unzip='7zz x'
 alias 7peek='7zz l'
 
-
 alias vopen='vera mount'
 alias vclose='vera unmount'
 alias vlist='veracrypt --text --list'
 
 repo() {
-  tmp=$(mktemp)
+  local sel url dir
 
-  {
-    gh repo list --limit 1000 --json nameWithOwner,url &
-    gh repo list untitledev-np --limit 1000 --json nameWithOwner,url &
-    # gh repo list Litto-devs-np --limit 1000 --json nameWithOwner,url &
-    # gh repo list Nepikose --limit 1000 --json nameWithOwner,url &
-    gh repo list Wallapop --limit 1000 --json nameWithOwner,url &
-    wait
-  } \
-  | jq -s 'add | unique_by(.nameWithOwner)' \
-  | jq -r '.[] | "\(.nameWithOwner)\t\(.url)"' \
-  | fzf --with-nth=1 \
-  | cut -f2 \
-  | xargs git clone
+  sel=$(
+    {
+      gh repo list --limit 1000 --json nameWithOwner,url &
+      gh repo list untitledev-np --limit 1000 --json nameWithOwner,url &
+      gh repo list Wallapop --limit 1000 --json nameWithOwner,url &
+      wait
+    } \
+    | jq -s 'add | unique_by(.nameWithOwner)' \
+    | jq -r '.[] | "\(.nameWithOwner)\t\(.url)"' \
+    | fzf --with-nth=1
+  )
+
+  url=$(printf '%s\n' "$sel" | cut -f2)
+  dir=$(basename "$url" .git)
+
+  git clone "$url" && cd "$dir"
 }
-
