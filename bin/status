@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+
+has_docker=false
+has_vpn=false
+has_vera=false
+
+# Check Docker
+if docker ps -q 2>/dev/null | grep -q .; then
+    has_docker=true
+fi
+
+# Check VPN
+vpn_out=$(vpn-status 2>/dev/null)
+if [ -n "$vpn_out" ] && [ "$vpn_out" != "❌" ]; then
+    has_vpn=true
+fi
+
+# Check VeraCrypt
+if veracrypt --text --list 2>/dev/null | grep -q .; then
+    has_vera=true
+fi
+
+echo "=============================="
+echo ""
+
+# Docker
+echo "🐳  Docker ==================="
+if $has_docker; then
+    docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Status}}\t{{.Ports}}"
+else
+    echo "  ✅  Clear"
+fi
+echo ""
+
+# VPN
+echo "🛜  VPN ======================"
+if $has_vpn; then
+    echo "  Connected ($vpn_out)"
+else
+    echo "  ✅ Clear"
+fi
+echo ""
+
+# VeraCrypt
+echo "🔐  VeraCrypt ================"
+if $has_vera; then
+    veracrypt --text --list | while read -r line; do
+        echo "  Mounted: $(echo "$line" | awk '{print $NF}')"
+    done
+else
+    echo "  ✅  Clear"
+fi
+
+echo ""
+echo "=============================="

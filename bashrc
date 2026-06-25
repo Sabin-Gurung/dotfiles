@@ -59,6 +59,26 @@ alias vopen='vera mount'
 alias vclose='vera unmount'
 alias vlist='veracrypt --text --list'
 
+openrepo() {
+  local sel url
+
+  sel=$(
+    {
+      gh repo list --limit 1000 --json nameWithOwner,url &
+      gh repo list untitledev-np --limit 1000 --json nameWithOwner,url &
+      gh repo list Wallapop --limit 1000 --json nameWithOwner,url &
+      gh repo list Litto-devs-np --limit 1000 --json nameWithOwner,url &
+      wait
+    } \
+    | jq -s 'add | unique_by(.nameWithOwner)' \
+    | jq -r '.[] | "\(.nameWithOwner)\t\(.url)"' \
+    | fzf --with-nth=1 --reverse
+  )
+
+  url=$(printf '%s\n' "$sel" | cut -f2)
+  [ -n "$url" ] && open "$url"
+}
+
 repo() {
   local sel url dir
 
@@ -67,6 +87,7 @@ repo() {
       gh repo list --limit 1000 --json nameWithOwner,url &
       gh repo list untitledev-np --limit 1000 --json nameWithOwner,url &
       gh repo list Wallapop --limit 1000 --json nameWithOwner,url &
+      gh repo list Litto-devs-np --limit 1000 --json nameWithOwner,url &
       wait
     } \
     | jq -s 'add | unique_by(.nameWithOwner)' \
@@ -93,4 +114,23 @@ dsh() {
 
     docker exec -it "$container" sh 2>/dev/null ||
     docker exec -it "$container" bash
+}
+
+rotl() {
+  if [ -z "$1" ]; then
+    echo "Usage: rotl <image-file>"
+    return 1
+  fi
+
+  magick "$1" -rotate -90 "$1"
+}
+
+# Rotate image 90° right (clockwise) in place
+rotr() {
+  if [ -z "$1" ]; then
+    echo "Usage: rotr <image-file>"
+    return 1
+  fi
+
+  magick "$1" -rotate 90 "$1"
 }
